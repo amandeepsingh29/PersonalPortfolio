@@ -1,0 +1,247 @@
+:root {
+    --car-width: 85vw;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --car-width: 280px;
+    }
+}
+
+.css-train {
+    --dark-grey: #2c2a24;
+    --light-grey: #535044;
+    --dark-red: #b83232;
+    --light-red: #e14343;
+
+    flex-shrink: 0;
+    width: 200px;
+    height: 300px;
+    position: relative;
+    z-index: 20;
+
+    background: radial-gradient(18px circle at center,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 20%,
+            var(--light-grey) 20%,
+            var(--light-grey) 70%,
+            var(--dark-red) 70%,
+            var(--dark-red) 80%,
+            var(--dark-grey) 80%,
+            var(--dark-grey) 90%,
+            black 90%,
+            black 99%,
+            transparent 99%),
+        radial-gradient(18px circle at center,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 20%,
+            var(--light-grey) 20%,
+            var(--light-grey) 70%,
+            var(--dark-red) 70%,
+            var(--dark-red) 80%,
+            var(--dark-grey) 80%,
+            var(--dark-grey) 90%,
+            black 90%,
+            black 99%,
+            transparent 99%),
+        radial-gradient(circle,
+            transparent 0%,
+            transparent 85%,
+            black 85%,
+            black 90%,
+            transparent 90%,
+            transparent 100%),
+        linear-gradient(90deg,
+            black 0%,
+            black 5%,
+            transparent 5%,
+            transparent 95%,
+            black 95%,
+            black 100%),
+        linear-gradient(0deg,
+            black 0%,
+            black 5%,
+            transparent 5%,
+            transparent 95%,
+            black 95%,
+            black 100%),
+        linear-gradient(0deg,
+            var(--dark-red) 0%,
+            var(--dark-red) 25%,
+            var(--light-red) 35%,
+            var(--light-red) 100%),
+        linear-gradient(0deg, black 0%, black 100%),
+        linear-gradient(0deg,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 45%,
+            var(--light-grey) 55%,
+            var(--light-grey) 100%),
+        radial-gradient(32.5px circle at center,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 20%,
+            var(--light-grey) 20%,
+            var(--light-grey) 70%,
+            var(--dark-red) 70%,
+            var(--dark-red) 80%,
+            var(--dark-grey) 80%,
+            var(--dark-grey) 90%,
+            black 90%,
+            black 99%,
+            transparent 99%),
+        linear-gradient(0deg, black 0%, black 100%),
+        linear-gradient(45deg, #93d7e0 0%, #93d7e0 25%, #c0eaf0 30%, #c0eaf0 100%),
+        linear-gradient(0deg, black 0%, black 100%),
+        linear-gradient(0deg,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 49%,
+            var(--light-grey) 51%,
+            var(--light-grey) 100%),
+        linear-gradient(0deg, black 0%, black 100%),
+        linear-gradient(60deg,
+            var(--dark-red) 0%,
+            var(--dark-red) 25%,
+            var(--light-red) 35%,
+            var(--light-red) 100%),
+        linear-gradient(0deg, black 0%, black 100%),
+        conic-gradient(from 90deg at 0% 0%,
+            transparent 0%,
+            transparent 13%,
+            black 13%,
+            black 14%,
+            var(--light-red) 14%,
+            var(--dark-red) 22%,
+            var(--dark-red) 100%),
+        linear-gradient(0deg, var(--light-grey) 0%, var(--light-grey) 100%),
+        linear-gradient(0deg,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 45%,
+            var(--light-grey) 55%,
+            var(--light-grey) 100%),
+        linear-gradient(90deg,
+            var(--dark-red) 0%,
+            var(--dark-red) 30%,
+            var(--light-red) 40%,
+            var(--light-red) 100%),
+        linear-gradient(90deg,
+            var(--dark-red) 0%,
+            var(--dark-red) 30%,
+            var(--light-red) 40%,
+            var(--light-red) 100%),
+        linear-gradient(90deg, black 0%, black 100%),
+        linear-gradient(90deg, black 0%, black 100%);
+    background-size: 36px 36px, 36px 36px, 98px 70px, 98px 50px, 82px 70px,
+        61px 51px, 64px 54px, 88px 64px, 65px 65px, 101px 24px, 34px 34px, 40px 40px,
+        64px 9px, 70px 15px, 54px 94px, 60px 100px, 34px 34px, 98px 34px, 20px 60px,
+        28px 8px, 18px 26px, 34px 14px, 24px 26px;
+    background-position-x: 90px, 130px, 78px, 78px, 86px, 83px, 83px, 83px, 25px,
+        72px, 28px, 25px, 13px, 10px, 18px, 15px, 167px, 70px, 66px, 132px, 137px,
+        129px, 134px;
+    background-position-y: 264px, 264px, 180px, 190px, 180px, 183px, 183px, 183px,
+        233px, 261px, 156px, 153px, 135px, 132px, 150px, 147px, 250px, 250px, 190px,
+        153px, 160px, 150px, 160px;
+    background-repeat: no-repeat;
+}
+
+.css-train:after {
+    position: absolute;
+    content: "";
+    background: radial-gradient(circle at center,
+            #474747dd 0%,
+            #7e7e7ecc 20%,
+            #b1b1b1bb 40%,
+            #d8d8d8aa 60%,
+            transparent 90%);
+    filter: blur(3px);
+    border-radius: 50%;
+    animation: smoke1 3s infinite linear;
+}
+
+@keyframes smoke1 {
+    0% {
+        height: 0px;
+        width: 0px;
+        left: 130px;
+        top: 160px;
+        opacity: 1;
+    }
+
+    50% {
+        height: 30px;
+        width: 30px;
+        left: 160px;
+        top: 100px;
+        opacity: 0;
+    }
+
+    50.1% {
+        height: 30px;
+        width: 30px;
+        left: 160px;
+        top: 100px;
+        opacity: 0;
+    }
+
+    50.11% {
+        height: 0px;
+        width: 0px;
+        left: 150px;
+        top: 160px;
+        opacity: 1;
+    }
+
+    100% {
+        height: 30px;
+        width: 30px;
+        left: 120px;
+        top: 90px;
+        opacity: 0;
+    }
+}
+
+.css-train:before {
+    content: "";
+    position: absolute;
+    height: 12px;
+    width: 42px;
+    background: linear-gradient(0deg,
+            var(--dark-grey) 0%,
+            var(--dark-grey) 50%,
+            var(--light-grey) 50%,
+            var(--light-grey) 100%);
+    bottom: 15.5px;
+    left: 108px;
+    border-radius: 50dvw;
+    border: 3px solid black;
+    box-sizing: border-box;
+    animation: chooChoo 1s infinite linear;
+}
+
+@keyframes chooChoo {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    16.66666666666667% {
+        transform: translate(5px, 0px);
+    }
+
+    33.33333333333334% {
+        transform: translate(5px, 5px);
+    }
+
+    50% {
+        transform: translate(0px, 5px);
+    }
+
+    66.66666666666668% {
+        transform: translate(-5px, 5px);
+    }
+
+    83.33333333333335% {
+        transform: translate(-5px, 0px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}

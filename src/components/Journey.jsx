@@ -5,41 +5,41 @@ import { Briefcase, GraduationCap, MapPin } from 'lucide-react';
 const experienceData = [
     {
         id: 1,
-        date: '2023 - Present',
-        title: 'Senior Software Engineer',
-        company: 'Tech Innovators',
-        description: 'Leading the development of highly scalable microservices architecture. Improving system performance and driving new technical initiatives across teams.',
+        date: 'Jan 2026 - Present',
+        title: 'Software Developer Intern',
+        company: 'Oracle',
+        description: 'Working on enterprise software solutions and collaborating with cross-functional teams to develop, test, and maintain robust applications.',
     },
     {
         id: 2,
-        date: '2021 - 2023',
-        title: 'Software Engineer',
-        company: 'NextGen Systems',
-        description: 'Developed and maintained core features of the flagship web application. Collaborated with cross-functional teams to deliver high-quality, responsive UIs using modern React.',
+        date: 'May 2025 - July 2025',
+        title: 'Software Developer Intern',
+        company: 'ProAEC',
+        description: 'Contributed to the development of software tools and systems, focusing on improving code efficiency and implementing new features.',
     },
     {
         id: 3,
-        date: '2019 - 2021',
-        title: 'Frontend Developer',
-        company: 'Creative Digital',
-        description: 'Built interactive and accessible web experiences from the ground up using React, JavaScript, and CSS. Mentored junior developers and enforced coding standards.',
+        date: 'June 2023 - July 2023',
+        title: 'Research Intern',
+        company: 'EL Centre',
+        description: 'Conducted in-depth technical research, gathered data, and assisted in analyzing complex problems to support ongoing technical initiatives.',
     },
 ];
 
 const educationData = [
     {
         id: 1,
-        date: '2015 - 2019',
-        title: 'B.S. in Computer Science',
-        company: 'University of Technology',
-        description: 'Graduated with Honors. Specialized in data structures, algorithms, distributed systems, and full-stack web application development.',
+        date: '2022 - 2026',
+        title: 'Bachelor of Engineering in Computer Science',
+        company: 'Thapar Institute of Engineering and Technology, Patiala',
+        description: 'Current CGPA: 9.42. Coursework focusing on advanced computer science principles, software engineering, and system design.',
     },
     {
         id: 2,
-        date: '2013 - 2015',
-        title: 'High School Diploma',
-        company: 'Science Academy',
-        description: 'Focus on Mathematics and Physics. Led the robotics club and participated in national programming competitions.',
+        date: '2020 - 2022',
+        title: 'Senior Secondary (Non-Medical)',
+        company: 'BCM Senior Secondary School',
+        description: 'Central Board of Secondary Education (CBSE). Graduated with 94% aggregate, focusing on Physics, Chemistry, and Mathematics.',
     }
 ];
 
@@ -55,9 +55,6 @@ const Journey = () => {
         <div className={`min-h-screen pt-32 pb-32 transition-colors duration-300 ${isDark ? 'bg-[#0f0f14]' : 'bg-[#F5F1E8]'}`}>
             <div className="max-w-7xl mx-auto px-6">
                 <div className="text-center mb-24">
-                    <div className={`inline-flex items-center justify-center p-4 rounded-full mb-6 ${isDark ? 'bg-red-900/20 text-red-500' : 'bg-red-50 text-red-600'}`}>
-                        <MapPin size={28} className="animate-pulse" />
-                    </div>
                     <h1 className={`text-5xl md:text-7xl font-black tracking-tighter mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>
                         My <span className="text-red-600">Journey</span>
                     </h1>
