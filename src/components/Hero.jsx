@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Twitter, Linkedin, Instagram, Github, ArrowDown } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import TextScramble from './TextScramble';
+import Typewriter from './Typewriter';
 
 const Hero = () => {
   const { isDark } = useTheme();
@@ -9,6 +10,17 @@ const Hero = () => {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const [nameComplete, setNameComplete] = useState(false);
+
+  // Mouse position for interactive background blob
+  const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
+
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleGlobalMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
+  }, []);
 
   // Card spotlight — mouse-following radial gradient
   const handleSpotlight = (e) => {
@@ -31,13 +43,16 @@ const Hero = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
+      const transformStyle = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY * 0.0003})`;
+      const opacityStyle = Math.max(0, 1 - scrollY * 0.002);
+
       if (titleRef.current) {
-        titleRef.current.style.transform = `translateY(${scrollY * 0.3}px) scale(${1 - scrollY * 0.0003})`;
-        titleRef.current.style.opacity = Math.max(0, 1 - scrollY * 0.002);
+        titleRef.current.style.transform = transformStyle;
+        titleRef.current.style.opacity = opacityStyle;
       }
       if (subtitleRef.current) {
-        subtitleRef.current.style.transform = `translateY(${scrollY * 0.15}px)`;
-        subtitleRef.current.style.opacity = Math.max(0, 1 - scrollY * 0.003);
+        subtitleRef.current.style.transform = transformStyle;
+        subtitleRef.current.style.opacity = opacityStyle;
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -47,14 +62,31 @@ const Hero = () => {
   const techStack = ['React', 'Next.js', 'Node.js', 'Python', 'TypeScript', 'Tailwind', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS'];
 
   return (
-    <section id="about" ref={heroRef} className="max-w-6xl mx-auto px-6 pt-16 pb-8 overflow-hidden">      {/* Floating gradient orbs */}
-      <div className="hero-gradient-orbs">
+    <section id="about" ref={heroRef} className="max-w-6xl mx-auto px-6 pt-16 pb-8 overflow-hidden relative">
+
+      {/* Interactive Flowing Background Blob */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-1000"
+        style={{ opacity: isDark ? 0.35 : 0.15 }}
+      >
+        <div
+          className="absolute w-[800px] h-[800px] rounded-full blur-[120px] transition-transform duration-[1500ms] ease-out mix-blend-screen"
+          style={{
+            background: isDark ? 'radial-gradient(circle, rgba(220,38,38,0.5) 0%, rgba(30,30,40,0) 70%)' : 'radial-gradient(circle, rgba(220,38,38,0.6) 0%, rgba(255,255,255,0) 70%)',
+            transform: `translate(${mousePos.x - 400}px, ${mousePos.y - 400}px)`
+          }}
+        />
+      </div>
+
+      {/* Floating gradient orbs */}
+      <div className="hero-gradient-orbs z-0 opacity-50">
         <div className="orb orb-1" />
         <div className="orb orb-2" />
         <div className="orb orb-3" />
       </div>
+
       {/* Top intro */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-12 relative z-10">
         <div className={`hero-animate inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-8 ${isDark ? 'bg-red-900/30 border border-red-800/40 text-red-400' : 'bg-red-50 border border-red-100 text-red-600'}`}>
           <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
           Open to Collaborate
@@ -75,9 +107,11 @@ const Hero = () => {
           </h1>
         </div>
 
-        <p ref={subtitleRef} className={`hero-animate-delay-2 text-lg md:text-xl max-w-lg mx-auto leading-relaxed font-light parallax-hero ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-          Software engineer who loves building scalable systems.
-        </p>
+        <div ref={subtitleRef} className="parallax-hero will-change-transform">
+          <div className={`hero-animate-delay-2 text-lg md:text-xl max-w-lg mx-auto leading-relaxed font-light ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            <Typewriter text="Software engineer who loves building scalable systems." delay={1200} speed={40} />
+          </div>
+        </div>
       </div>
 
       {/* Marquee ticker */}
