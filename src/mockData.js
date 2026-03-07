@@ -39,8 +39,8 @@ export const papers = [
 export const topics = [
   { title: "Machine Learning & Artificial Intelligence", url: "#" },
   { title: "System Design & Scalable Systems", url: "#" },
-  { title: "Cloud & Devops", url: "#", todo: true },
-  { title: "Data Structures and Algorithms", url: "#", todo: true }
+  { title: "Cloud & Devops", url: "#" },
+  { title: "Data Structures and Algorithms", url: "#" }
 ];
 
 export const footerLinks = {
