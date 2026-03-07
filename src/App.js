@@ -11,7 +11,6 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
 import Journey from "./components/Journey";
-import ProjectsSection from "./components/projects-section";
 
 // Component to handle hash scrolling after navigation
 function ScrollToHash() {
@@ -36,7 +35,6 @@ function Home() {
   return (
     <>
       <Hero />
-      <ProjectsSection />
       <BlogSection />
       <TopicsSection />
       <PapershelfSection />
