@@ -20,15 +20,11 @@ const TopicsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {topics.map((topic, index) => (
-            <div key={index} className="stagger-child relative" style={staggerDelay(index)}>
-              {topic.todo ? (
-                <div className={`rounded-2xl p-6 border border-dashed flex flex-col items-center text-center min-h-[180px] justify-center ${isDark ? 'bg-white/5 border-gray-700' : 'bg-white/60 border-gray-300'}`}>
-                  <Lock size={20} className={isDark ? 'text-gray-600 mb-3' : 'text-gray-300 mb-3'} />
-                  <h3 className={`text-sm font-semibold mb-1 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{topic.title}</h3>
-                  <span className={`text-[11px] font-mono-space px-3 py-1 rounded-full font-medium ${isDark ? 'bg-gray-800 text-gray-500' : 'bg-gray-100 text-gray-500'}`}>in progress</span>
-                </div>
-              ) : (
+          {topics.map((topic, index) => {
+            if (topic.todo) return null; // Completey hide "in progress" topics
+
+            return (
+              <div key={index} className="stagger-child relative" style={staggerDelay(index)}>
                 <a
                   href={topic.url}
                   className={`group rounded-2xl p-6 flex flex-col min-h-[180px] justify-between card-lift ${isDark ? 'bg-[#1a1a24] border border-gray-800 hover:border-red-900' : 'bg-white border border-gray-100 hover:border-red-100'}`}
@@ -43,9 +39,9 @@ const TopicsSection = () => {
                     </span>
                   </div>
                 </a>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
