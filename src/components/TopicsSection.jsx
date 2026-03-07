@@ -26,7 +26,7 @@ const TopicsSection = () => {
                 <div className={`rounded-2xl p-6 border border-dashed flex flex-col items-center text-center min-h-[180px] justify-center ${isDark ? 'bg-white/5 border-gray-700' : 'bg-white/60 border-gray-300'}`}>
                   <Lock size={20} className={isDark ? 'text-gray-600 mb-3' : 'text-gray-300 mb-3'} />
                   <h3 className={`text-sm font-semibold mb-1 ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>{topic.title}</h3>
-                  <span className={`text-[11px] font-mono-space px-3 py-1 rounded-full font-medium ${isDark ? 'bg-gray-800 text-gray-500' : 'bg-gray-100 text-gray-500'}`}>Coming soon</span>
+                  <span className={`text-[11px] font-mono-space px-3 py-1 rounded-full font-medium ${isDark ? 'bg-gray-800 text-gray-500' : 'bg-gray-100 text-gray-500'}`}>in progress</span>
                 </div>
               ) : (
                 <a
