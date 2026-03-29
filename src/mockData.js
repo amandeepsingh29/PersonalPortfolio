@@ -11,7 +11,7 @@ export const profileData = {
     { platform: "Twitter", followers: "", url: "https://twitter.com/amandeepxsingh" },
     { platform: "LinkedIn", followers: "", url: "https://linkedin.com/in/amandeepsinghx" },
     { platform: "GitHub", followers: "", url: "https://github.com/amandeepsingh29" },
-    { platform: "Instagram", followers: "", url: "https://instagram.com/amandeepxsingh" }
+    { platform: "Instagram", followers: "", url: "https://www.instagram.com/amandeep._.singhh" }
   ]
 };
 

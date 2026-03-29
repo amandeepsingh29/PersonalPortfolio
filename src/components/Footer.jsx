@@ -23,7 +23,7 @@ const Footer = () => {
     { icon: Twitter, href: 'https://twitter.com/amandeepxsingh' },
     { icon: Linkedin, href: 'https://linkedin.com/in/amandeepsinghx' },
     { icon: Github, href: 'https://github.com/amandeepsingh29' },
-    { icon: Instagram, href: 'https://instagram.com/amandeepxsingh' },
+    { icon: Instagram, href: 'https://www.instagram.com/amandeep._.singhh' },
   ];
 
   return (

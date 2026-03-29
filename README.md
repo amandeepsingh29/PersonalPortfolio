@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# Amandeep Singh — Personal Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **Software Engineer** · Full-Stack Developer · Always Building.
 
-## Available Scripts
+A modern, minimalist personal portfolio website built with **React** — showcasing my blogs, reads, projects, and thoughts on software engineering, system design, and technology.
 
-In the project directory, you can run:
+🌐 **Live Site:** [amandeepxsingh.tech](https://amandeepxsingh.tech)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 👤 About Me
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+I am a software engineer passionate about building modern web applications and scalable systems. I love working across the full stack — from crafting intuitive user interfaces to designing robust backend architectures.
 
-### `npm test`
+I enjoy exploring new technologies, contributing to open-source projects, and continuously learning. My areas of interest include:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 🤖 Machine Learning & Artificial Intelligence
+- 🏗️ System Design & Scalable Systems
+- ☁️ Cloud & DevOps
+- 📊 Data Structures and Algorithms
 
-### `npm run build`
+When I'm not coding, you can find me exploring new tech stacks, writing on Medium, or working on a new side project.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔗 Connect with Me
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Platform  | Link |
+|-----------|------|
+| 🐦 Twitter   | [@amandeepxsingh](https://twitter.com/amandeepxsingh) |
+| 💼 LinkedIn  | [amandeepsinghx](https://linkedin.com/in/amandeepsinghx) |
+| 🐙 GitHub    | [amandeepsingh29](https://github.com/amandeepsingh29) |
+| 📸 Instagram | [amandeep._.singhh](https://www.instagram.com/amandeep._.singhh) |
+| ✍️ Medium    | [@amandeepxsingh](https://medium.com/@amandeepxsingh) |
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ✍️ Recent Blog Posts
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [The Rate Limiter: System Design Outlook](https://medium.com/@amandeepxsingh/the-rate-limiter-system-design-outlook-48e564507459) — *Jan 23, 2026*
+- [Welcome to the Speed Wars of Wall Street: How High-Frequency Trading is Redefining Finance](https://medium.com/@amandeepxsingh/welcome-to-the-speed-wars-of-wall-street-how-high-frequency-trading-is-redefining-finance-26d55192cbca) — *Jul 03, 2025*
+- [Hallucination of Hallucination](http://medium.com/@amandeepxsingh/hallucination-of-hallucination-0a60d18eccef) — *Jul 02, 2025*
+- [Neuralink Summer 2025: When Mind Meets Machine](https://medium.com/@amandeepxsingh/neuralink-summer-2025-when-mind-meets-machine-a-glimpse-into-the-future-of-human-ai-8e6efd288d5e) — *Jul 01, 2025*
+- [Understanding Hilbert Space: A Window into Quantum Mechanics and Beyond](https://medium.com/@amandeepxsingh/understanding-hilbert-space-a-window-into-quantum-mechanics-and-beyond-0387215afbcc) — *Jan 21, 2025*
+- [From CAM to Grad-CAM: How We Make AI Decisions Less Mysterious](https://medium.com/@amandeepxsingh/from-cam-to-grad-cam-how-we-make-ai-decisions-less-mysterious-a92f0f31cead) — *Jan 18, 2025*
+- [What exactly is SHA-256?](https://medium.com/@amandeepxsingh/what-exactly-is-sha-256-investigating-the-secure-hash-algorithm-256-6d3d164e6570) — *Jun 02, 2024*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🛠️ Tech Stack
 
-## Learn More
+**Frontend**
+- React, Next.js
+- Tailwind CSS, Vanilla CSS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**Backend**
+- Node.js, Express
+- Python, FastAPI
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Other**
+- Cloud & DevOps tooling
+- System design patterns
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 🚀 Running Locally
 
-### Analyzing the Bundle Size
+```bash
+# Install dependencies
+npm install
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Start the development server
+npm start
+# or
+npm run dev
+```
 
-### Making a Progressive Web App
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+# Build for production
+npm run build
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📁 Project Structure
 
-### Deployment
+```
+frontend/
+├── public/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── mockData.js     # Portfolio content & links
+│   └── App.js          # Root application
+├── package.json
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Built with ❤️ by [Amandeep Singh](https://amandeepxsingh.tech)*
