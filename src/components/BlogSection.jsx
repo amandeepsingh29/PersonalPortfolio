@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { blogPosts } from '../mockData';
 import { ArrowUpRight, Pen, X } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
+import { useSiteContent } from '../SiteContentContext';
 
 const BlogSection = () => {
   const { isDark } = useTheme();
+  const { content } = useSiteContent();
+  const blogPosts = content.blogPosts || [];
   const [showAll, setShowAll] = useState(false);
+  if (blogPosts.length === 0) return null;
   const featured = blogPosts[0];
   const rest = blogPosts.slice(1, 7);
 

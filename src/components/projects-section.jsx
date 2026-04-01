@@ -1,72 +1,85 @@
-import React, { useEffect, useState } from "react"
-import { ProjectsColumn } from "@/components/ui/projects-gallery"
-import { useTheme } from '../ThemeContext';
+import React, { useMemo } from "react";
+import { useTheme } from "../ThemeContext";
+import { ArrowUpRight } from "lucide-react";
+import { CircularTestimonials } from "@/components/ui/circular-testimonials";
+import { useSiteContent } from "../SiteContentContext";
+
+function getProjectPlaceholder(name, idx) {
+  const safeName = encodeURIComponent(name || `Project ${idx + 1}`);
+  return `https://ui-avatars.com/api/?name=${safeName}&background=111827&color=ffffff&size=1024&bold=true&format=png`;
+}
 
 export default function ProjectsSection() {
-    const { isDark } = useTheme();
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const { isDark } = useTheme();
+  const { content } = useSiteContent();
+  const projectConfig = content.projects;
 
-    useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                // Fetch top 12 repos to split across 3 columns
-                const response = await fetch('https://api.github.com/users/amandeepsingh29/repos?sort=updated&per_page=12');
-                if (response.ok) {
-                    const data = await response.json();
+  const projectTitle = projectConfig?.title || "What I've been building";
+  const projectRepoUrl = projectConfig?.repoUrl || "https://github.com/amandeepsingh29";
+  const legacyProjectImages = useMemo(
+    () => (projectConfig?.images || []).map((url) => (url || "").trim()).filter(Boolean),
+    [projectConfig]
+  );
+  const projects = useMemo(() => projectConfig?.items || [], [projectConfig]);
 
-                    const formattedProjects = data.map((repo, idx) => ({
-                        title: repo.name,
-                        description: repo.description || "No description provided. Code speaks for itself.",
-                        image: `https://images.unsplash.com/photo-${[
-                            "1518770660439-4636190af475",
-                            "1551434678-e076c223a692",
-                            "1519389950473-47ba0277781c",
-                            "1498050108023-c5249f4df085",
-                            "1504639725590-34d0984388bd",
-                            "1451187580459-43490279c0fa"
-                        ][idx % 6]}?auto=format&fit=crop&w=600&q=80`,
-                        tech: repo.language ? [repo.language] : ["Code"],
-                        url: repo.html_url
-                    }));
+  const testimonials = useMemo(
+    () =>
+      projects.map((project, idx) => ({
+        quote: project.description,
+        name: project.name,
+        designation: `${project.lang}${project.stars > 0 ? ` • ★${project.stars}` : ""}`,
+        url: project.url || projectRepoUrl,
+        src:
+          (project.image || "").trim() ||
+          (legacyProjectImages[idx] || "") ||
+          getProjectPlaceholder(project.name, idx),
+      })),
+    [legacyProjectImages, projectRepoUrl, projects]
+  );
 
-                    setProjects(formattedProjects);
-                }
-            } catch (error) {
-                console.error("Error fetching repos:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+  if (!testimonials.length) return null;
 
-        fetchProjects();
-    }, []);
+  return (
+    <section id="projects" className={`relative overflow-hidden py-24 ${isDark ? "bg-[#0f0f14]" : "bg-[#F5F1E8]"}`}>
+      <div className="mx-auto mb-14 flex max-w-6xl items-end justify-between px-6">
+        <div>
+          <p className="mb-3 font-mono-space text-[11px] font-bold uppercase tracking-[0.2em] text-red-600">[ PROJECTS ]</p>
+          <h2 className={`text-3xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
+            {projectTitle}
+          </h2>
+        </div>
 
-    // Split projects into 3 parts for the columns
-    const col1 = projects.filter((_, i) => i % 3 === 0);
-    const col2 = projects.filter((_, i) => i % 3 === 1);
-    const col3 = projects.filter((_, i) => i % 3 === 2);
+        <a
+          href={projectRepoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`hidden items-center gap-1.5 text-sm transition-colors sm:flex ${
+            isDark ? "text-gray-500 hover:text-red-400" : "text-gray-500 hover:text-red-600"
+          }`}
+        >
+          All repos <ArrowUpRight size={14} />
+        </a>
+      </div>
 
-    return (
-        <section className={`py-20 flex justify-center w-full px-6 overflow-hidden ${isDark ? 'bg-[#0f0f14]' : 'bg-[#F5F1E8]'}`}>
-            {/* 3 columns side by side like a showcase wall */}
-            <div className="flex flex-col items-center">
-                <h2 className={`text-4xl md:text-5xl font-black mb-12 tracking-tight ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                    My <span className="text-red-600">Projects</span>
-                </h2>
-
-                {loading ? (
-                    <div className="h-[800px] flex items-center justify-center">
-                        <p className={`animate-pulse ${isDark ? 'text-gray-500' : 'text-gray-400'}`}>Fetching repositories...</p>
-                    </div>
-                ) : (
-                    <div className="flex gap-6 justify-center w-full max-w-7xl h-[800px] [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
-                        <ProjectsColumn className="hidden md:flex flex-col" projects={col1} duration={35} />
-                        <ProjectsColumn className="flex flex-col mt-10" projects={col2} duration={30} />
-                        <ProjectsColumn className="hidden lg:flex flex-col mt-20" projects={col3} duration={40} />
-                    </div>
-                )}
-            </div>
-        </section>
-    )
+      <div className="mx-auto flex max-w-6xl justify-center px-4 sm:px-6">
+        <CircularTestimonials
+          testimonials={testimonials}
+          autoplay={true}
+          colors={{
+            name: isDark ? "#f8fafc" : "#0f172a",
+            designation: isDark ? "#9ca3af" : "#6b7280",
+            testimony: isDark ? "#e5e7eb" : "#374151",
+            arrowBackground: isDark ? "#1f2937" : "#111827",
+            arrowForeground: "#f8fafc",
+            arrowHoverBackground: isDark ? "#ef4444" : "#2563eb",
+          }}
+          fontSizes={{
+            name: "clamp(1.4rem, 1.2rem + 0.8vw, 2rem)",
+            designation: "clamp(0.88rem, 0.8rem + 0.2vw, 1rem)",
+            quote: "clamp(1rem, 0.95rem + 0.4vw, 1.2rem)",
+          }}
+        />
+      </div>
+    </section>
+  );
 }

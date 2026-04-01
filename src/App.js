@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 import { ThemeProvider, useTheme } from "./ThemeContext";
+import { SiteContentProvider } from "./SiteContentContext";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import BlogSection from "./components/BlogSection";
@@ -11,6 +12,9 @@ import Newsletter from "./components/Newsletter";
 import Footer from "./components/Footer";
 import CustomCursor from "./components/CustomCursor";
 import Journey from "./components/Journey";
+import ProjectsSection from "./components/projects-section";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminImageGate from "./components/AdminImageGate";
 
 // Component to handle hash scrolling after navigation
 function ScrollToHash() {
@@ -36,6 +40,7 @@ function Home() {
     <>
       <Hero />
       <BlogSection />
+      <ProjectsSection />
       <TopicsSection />
       <PapershelfSection />
       <Newsletter />
@@ -55,6 +60,7 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/journey" element={<Journey />} />
+            <Route path="/admin" element={<AdminImageGate><AdminDashboard /></AdminImageGate>} />
           </Routes>
         </main>
         <Footer />
@@ -67,7 +73,9 @@ function AppContent() {
 function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <SiteContentProvider>
+        <AppContent />
+      </SiteContentProvider>
     </ThemeProvider>
   );
 }

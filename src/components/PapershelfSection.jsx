@@ -1,8 +1,8 @@
 import React from 'react';
-import { papers } from '../mockData';
 import { ArrowUpRight, BookMarked } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import { useScrollReveal, staggerDelay } from '../hooks/useScrollReveal';
+import { useSiteContent } from '../SiteContentContext';
 
 const colorAccents = [
   'border-l-red-500',
@@ -16,7 +16,11 @@ const colorAccents = [
 
 const PapershelfSection = () => {
   const { isDark } = useTheme();
+  const { content } = useSiteContent();
+  const papers = content.papers || [];
   const [ref, isVisible] = useScrollReveal();
+
+  if (papers.length === 0) return null;
 
   return (
     <section id="reads" className="max-w-6xl mx-auto px-6 py-20">

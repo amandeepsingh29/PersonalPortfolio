@@ -19,6 +19,7 @@ const Header = () => {
     { label: 'About', href: '/#about' },
     { label: 'Journey', href: '/journey' },
     { label: 'Blog', href: '/#blogs' },
+    { label: 'Projects', href: '/#projects' },
     { label: 'Reads', href: '/#reads' },
     { label: 'Contact', href: '/#contact' },
   ];
@@ -28,8 +29,8 @@ const Header = () => {
       ? isDark ? 'bg-[#0f0f14]/90 backdrop-blur-md shadow-sm shadow-black/20' : 'bg-[#F5F1E8]/90 backdrop-blur-md shadow-sm'
       : 'bg-transparent'
       }`}>
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-2 sm:gap-3">
+        <div className="flex items-center gap-2 sm:gap-4 min-w-0 flex-1 overflow-hidden">
           <Link to="/" className={`text-2xl font-black tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>
             AS<span className="text-red-600">.</span>
           </Link>
@@ -37,9 +38,9 @@ const Header = () => {
         </div>
 
         {/* Desktop Header Contents Container */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4 shrink-0">
 
-          <nav className="flex items-center gap-1">
+          <nav className="flex items-center gap-1 whitespace-nowrap">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -78,7 +79,7 @@ const Header = () => {
         </div>
 
         {/* Mobile toggle */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={toggleTheme}
             className={`theme-toggle-btn ${isDark ? 'text-yellow-400' : 'text-gray-600'}`}
@@ -106,13 +107,13 @@ const Header = () => {
 
       {/* Mobile Nav Overlay */}
       <div
-        className={`md:hidden fixed inset-0 z-40 transition-all duration-300 ease-in-out ${mobileOpen ? 'bg-black/20 backdrop-blur-sm opacity-100' : 'opacity-0 pointer-events-none delay-100'}`}
+        className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ease-in-out ${mobileOpen ? 'bg-black/20 backdrop-blur-sm opacity-100' : 'opacity-0 pointer-events-none delay-100'}`}
         onClick={() => setMobileOpen(false)}
       />
 
       {/* Mobile Nav Circular Popup Box */}
       <div
-        className={`md:hidden fixed top-20 right-6 z-50 w-56 p-2 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] origin-top-right transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${mobileOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-90 opacity-0 -translate-y-6 pointer-events-none'
+        className={`lg:hidden fixed top-20 right-3 left-3 sm:right-6 sm:left-auto z-50 w-auto sm:w-56 p-2 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] origin-top-right transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${mobileOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-90 opacity-0 -translate-y-6 pointer-events-none'
           } ${isDark ? 'bg-[#1a1a24]/95 backdrop-blur-2xl border border-gray-800' : 'bg-white/95 backdrop-blur-2xl border border-gray-200'}`}
       >
         <div className="flex flex-col gap-1 px-3 py-4">

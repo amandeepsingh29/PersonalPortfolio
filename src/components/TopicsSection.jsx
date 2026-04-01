@@ -1,14 +1,18 @@
 import React from 'react';
-import { topics } from '../mockData';
 import { ArrowUpRight, Sparkles, Lock } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import { useScrollReveal, staggerDelay } from '../hooks/useScrollReveal';
+import { useSiteContent } from '../SiteContentContext';
 
 const icons = ['🚀', '🏗️', '☁️', '🧠'];
 
 const TopicsSection = () => {
   const { isDark } = useTheme();
+  const { content } = useSiteContent();
+  const topics = content.topics || [];
   const [ref, isVisible] = useScrollReveal();
+
+  if (topics.length === 0) return null;
 
   return (
     <section id="topics" className="max-w-6xl mx-auto px-6 py-20">

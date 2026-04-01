@@ -32,7 +32,7 @@ const educationData = [
         date: '2022 - 2026',
         title: 'Bachelor of Engineering in Computer Science',
         company: 'Thapar Institute of Engineering and Technology, Patiala',
-        description: 'Current CGPA: 9.42. Coursework focusing on advanced computer science principles, software engineering, and system design.',
+        description: 'Current CGPA: 9.42.\nCoursework focusing on advanced computer science principles, software engineering, and system design.',
     },
     {
         id: 2,
@@ -140,7 +140,7 @@ const JourneyCard = ({ item, isDark, isLeft }) => {
             <div className={`flex flex-col ${isLeft ? 'md:items-end text-left md:text-right' : 'md:items-start text-left'}`}>
                 <h3 className={`text-2xl font-black tracking-tight mb-2 ${isDark ? 'text-white' : 'text-gray-900'}`}>{item.title}</h3>
                 <h4 className="text-sm font-mono-space font-bold uppercase tracking-widest text-red-600 mb-5">{item.company}</h4>
-                <p className={`leading-relaxed text-base ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`leading-relaxed text-base whitespace-pre-line ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                     {item.description}
                 </p>
             </div>

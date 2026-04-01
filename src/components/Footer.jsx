@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Twitter, Linkedin, Github, Instagram, Heart } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
+import { useSiteContent } from '../SiteContentContext';
+
+const iconMap = {
+  twitter: Twitter,
+  linkedin: Linkedin,
+  github: Github,
+  instagram: Instagram,
+};
 
 const LiveClock = ({ isDark }) => {
   const [time, setTime] = useState(new Date());
@@ -18,13 +26,10 @@ const LiveClock = ({ isDark }) => {
 
 const Footer = () => {
   const { isDark } = useTheme();
+  const { content } = useSiteContent();
 
-  const socials = [
-    { icon: Twitter, href: 'https://twitter.com/amandeepxsingh' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/amandeepsinghx' },
-    { icon: Github, href: 'https://github.com/amandeepsingh29' },
-    { icon: Instagram, href: 'https://www.instagram.com/amandeep._.singhh' },
-  ];
+  const footer = content.footer || {};
+  const socials = (footer.socials || []).filter((item) => iconMap[item.platform]);
 
   return (
     <footer className={`border-t ${isDark ? 'border-gray-800 bg-[#0f0f14]' : 'border-gray-200 bg-[#F5F1E8]'}`}>
@@ -35,7 +40,7 @@ const Footer = () => {
               AS<span className="text-red-600">.</span>
             </span>
             <p className={`text-sm ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>
-              Building things on the internet.
+              {footer.tagline || 'Building things on the internet.'}
             </p>
           </div>
 
@@ -48,11 +53,13 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            {socials.map(({ icon: Icon, href }, i) => (
+            {socials.map(({ platform, href }, i) => {
+              const Icon = iconMap[platform];
+              return (
               <a key={i} href={href} target="_blank" rel="noopener noreferrer" className={`w-9 h-9 flex items-center justify-center rounded-full transition-all duration-300 magnetic-hover ${isDark ? 'bg-white/5 text-gray-500 hover:bg-red-600 hover:text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-900 hover:text-white'}`}>
                 <Icon size={15} />
               </a>
-            ))}
+            )})}
           </div>
         </div>
 
