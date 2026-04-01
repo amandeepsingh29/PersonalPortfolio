@@ -141,7 +141,7 @@ const Hero = () => {
         <div className="rounded-2xl overflow-hidden tilt-card" onMouseMove={handleTilt} onMouseLeave={handleTiltReset}>
           <div className={`w-full aspect-square relative ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-800'}`}>
             <img
-              src="/profile.jpg"
+              src="/profile.png"
               alt="Amandeep Singh"
               className="w-full h-full object-cover"
               onError={(e) => {
