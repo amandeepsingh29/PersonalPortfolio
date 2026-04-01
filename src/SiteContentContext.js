@@ -30,57 +30,35 @@ function mergeWithDefaults(defaultValue, storedValue) {
 }
 
 function parseStoredContent() {
-  if (typeof window === "undefined") return defaultSiteContent;
-
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return defaultSiteContent;
-    const parsed = JSON.parse(raw);
-    return mergeWithDefaults(defaultSiteContent, parsed);
-  } catch (error) {
-    console.error("Failed to parse saved site content:", error);
-    return defaultSiteContent;
-  }
+  return defaultSiteContent;
 }
 
 const SiteContentContext = createContext(null);
 
 export function SiteContentProvider({ children }) {
   const [dbDefaults, setDbDefaults] = useState(defaultSiteContent);
-  const [content, setContent] = useState(() => parseStoredContent());
+  const [content, setContent] = useState(() => defaultSiteContent);
 
   useEffect(() => {
     let isMounted = true;
 
     const loadDbDefaults = async () => {
       try {
-        const res = await fetch(DB_FILE_PATH);
+        const res = await fetch(`${DB_FILE_PATH}?t=${Date.now()}`, {
+          cache: "no-store",
+          headers: {
+            "Cache-Control": "no-cache",
+            Pragma: "no-cache",
+          },
+        });
         if (!res.ok) return;
         const dbData = await res.json();
         const mergedDefaults = mergeWithDefaults(defaultSiteContent, dbData);
-        const dbVersion = mergedDefaults?.meta?.version;
         if (!isMounted) return;
 
         setDbDefaults(mergedDefaults);
-
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) {
-          setContent(mergedDefaults);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedDefaults));
-          return;
-        }
-
-        const parsed = JSON.parse(raw);
-        const localVersion = parsed?.meta?.version;
-
-        if (dbVersion && localVersion !== dbVersion) {
-          setContent(mergedDefaults);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedDefaults));
-          return;
-        }
-
-        const mergedWithLocal = mergeWithDefaults(mergedDefaults, parsed);
-        setContent(mergedWithLocal);
+        setContent(mergedDefaults);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedDefaults));
       } catch (error) {
         console.error("Failed to load .db defaults:", error);
       }

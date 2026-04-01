@@ -175,7 +175,7 @@ export function CircularTestimonials({
           ))}
         </div>
 
-        <div className="flex flex-col justify-between gap-8">
+        <div className="flex h-[20rem] flex-col gap-5 sm:h-[24rem]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -184,7 +184,7 @@ export function CircularTestimonials({
               animate="animate"
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="rounded-2xl border border-black/5 bg-white/70 p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.03]"
+              className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white/70 p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.03]"
             >
               <a
                 href={activeTestimonial.url || "#"}
@@ -201,51 +201,55 @@ export function CircularTestimonials({
                 {activeTestimonial.designation}
               </p>
 
-              <motion.p className="leading-7" style={{ color: colorTestimony, fontSize: fontSizeQuote }}>
-                {visibleWords.map((word, i) => (
-                  <motion.span
-                    key={`${word}-${i}`}
-                    initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                    animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                    transition={{ duration: 0.22, ease: "easeInOut", delay: 0.025 * i }}
-                    className="inline-block"
-                  >
-                    {word}&nbsp;
-                  </motion.span>
-                ))}
-                {!expandedQuote && isLongQuote && (
+              <div className="flex-1 overflow-y-auto pr-1">
+                <motion.p className="leading-7" style={{ color: colorTestimony, fontSize: fontSizeQuote }}>
+                  {visibleWords.map((word, i) => (
+                    <motion.span
+                      key={`${word}-${i}`}
+                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                      animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                      transition={{ duration: 0.22, ease: "easeInOut", delay: 0.025 * i }}
+                      className="inline-block"
+                    >
+                      {word}&nbsp;
+                    </motion.span>
+                  ))}
+                  {!expandedQuote && isLongQuote && (
+                    <button
+                      type="button"
+                      onClick={() => setExpandedQuote(true)}
+                      className="ml-1 inline text-xs font-semibold text-blue-600 hover:underline"
+                    >
+                      .....more
+                    </button>
+                  )}
+                </motion.p>
+              </div>
+
+              <div className="mt-4">
+                <a
+                  href={activeTestimonial.url || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                >
+                  Open project <ArrowUpRight size={14} />
+                </a>
+
+                {expandedQuote && isLongQuote && (
                   <button
                     type="button"
-                    onClick={() => setExpandedQuote(true)}
-                    className="ml-1 inline text-xs font-semibold text-blue-600 hover:underline"
+                    onClick={() => setExpandedQuote(false)}
+                    className="mt-3 block text-xs font-semibold text-blue-600 hover:underline"
                   >
-                    .....more
+                    Show less
                   </button>
                 )}
-              </motion.p>
-
-              <a
-                href={activeTestimonial.url || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-              >
-                Open project <ArrowUpRight size={14} />
-              </a>
-
-              {expandedQuote && isLongQuote && (
-                <button
-                  type="button"
-                  onClick={() => setExpandedQuote(false)}
-                  className="mt-3 block text-xs font-semibold text-blue-600 hover:underline"
-                >
-                  Show less
-                </button>
-              )}
+              </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex gap-5 md:pt-0">
+          <div className="flex gap-5">
             <button
               type="button"
               className="flex h-11 w-11 items-center justify-center rounded-full border-none transition-colors"

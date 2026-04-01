@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "2026-04-01-1"
+    "version": "2026-04-01-2"
   },
   "projects": {
     "title": "What I've been building",
@@ -19,7 +19,8 @@
         "description": "Lightweight API Latency Analyzer\nTrace any API endpoint and get a granular breakdown of DNS, TCP, TLS, server processing, and content transfer timings.",
         "lang": "React",
         "url": "https://github.com/amandeepsingh29/TracePulse",
-        "stars": 0
+        "stars": 0,
+        "image": "/images/projects/TracePulse.png"
       },
       {
         "name": "SCALPEL",
