@@ -1,4 +1,7 @@
 {
+  "meta": {
+    "version": "2026-04-01-1"
+  },
   "projects": {
     "title": "What I've been building",
     "repoUrl": "https://github.com/amandeepsingh29",

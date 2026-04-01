@@ -58,6 +58,7 @@ export function SiteContentProvider({ children }) {
         if (!res.ok) return;
         const dbData = await res.json();
         const mergedDefaults = mergeWithDefaults(defaultSiteContent, dbData);
+        const dbVersion = mergedDefaults?.meta?.version;
         if (!isMounted) return;
 
         setDbDefaults(mergedDefaults);
@@ -65,11 +66,21 @@ export function SiteContentProvider({ children }) {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) {
           setContent(mergedDefaults);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedDefaults));
           return;
         }
 
         const parsed = JSON.parse(raw);
-        setContent(mergeWithDefaults(mergedDefaults, parsed));
+        const localVersion = parsed?.meta?.version;
+
+        if (dbVersion && localVersion !== dbVersion) {
+          setContent(mergedDefaults);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedDefaults));
+          return;
+        }
+
+        const mergedWithLocal = mergeWithDefaults(mergedDefaults, parsed);
+        setContent(mergedWithLocal);
       } catch (error) {
         console.error("Failed to load .db defaults:", error);
       }
