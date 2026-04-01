@@ -11,15 +11,11 @@ function getProjectPlaceholder(name, idx) {
 
 export default function ProjectsSection() {
   const { isDark } = useTheme();
-  const { content } = useSiteContent();
+  const { content, isDbLoaded } = useSiteContent();
   const projectConfig = content.projects;
 
   const projectTitle = projectConfig?.title || "What I've been building";
   const projectRepoUrl = projectConfig?.repoUrl || "https://github.com/amandeepsingh29";
-  const legacyProjectImages = useMemo(
-    () => (projectConfig?.images || []).map((url) => (url || "").trim()).filter(Boolean),
-    [projectConfig]
-  );
   const projects = useMemo(() => projectConfig?.items || [], [projectConfig]);
 
   const testimonials = useMemo(
@@ -29,13 +25,12 @@ export default function ProjectsSection() {
         name: project.name,
         designation: `${project.lang}${project.stars > 0 ? ` • ★${project.stars}` : ""}`,
         url: project.url || projectRepoUrl,
-        src:
-          (project.image || "").trim() ||
-          (legacyProjectImages[idx] || "") ||
-          getProjectPlaceholder(project.name, idx),
+        src: (project.image || "").trim() || getProjectPlaceholder(project.name, idx),
       })),
-    [legacyProjectImages, projectRepoUrl, projects]
+    [projectRepoUrl, projects]
   );
+
+  if (!isDbLoaded) return null;
 
   if (!testimonials.length) return null;
 

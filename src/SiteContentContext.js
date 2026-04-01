@@ -38,6 +38,7 @@ const SiteContentContext = createContext(null);
 export function SiteContentProvider({ children }) {
   const [dbDefaults, setDbDefaults] = useState(defaultSiteContent);
   const [content, setContent] = useState(() => defaultSiteContent);
+  const [isDbLoaded, setIsDbLoaded] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -61,6 +62,8 @@ export function SiteContentProvider({ children }) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedDefaults));
       } catch (error) {
         console.error("Failed to load .db defaults:", error);
+      } finally {
+        if (isMounted) setIsDbLoaded(true);
       }
     };
 
@@ -80,10 +83,11 @@ export function SiteContentProvider({ children }) {
     () => ({
       content,
       setContent,
+      isDbLoaded,
       resetContent: () => setContent(dbDefaults),
       exportContent: () => JSON.stringify(content, null, 2),
     }),
-    [content, dbDefaults]
+    [content, dbDefaults, isDbLoaded]
   );
 
   return <SiteContentContext.Provider value={value}>{children}</SiteContentContext.Provider>;
