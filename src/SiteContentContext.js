@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from "
 import { defaultSiteContent } from "./siteContentDefaults";
 
 const STORAGE_KEY = "portfolio.siteContent.v1";
+const DB_FILE_PATH = "/site-content.db";
 
 function isPlainObject(value) {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -45,7 +46,41 @@ function parseStoredContent() {
 const SiteContentContext = createContext(null);
 
 export function SiteContentProvider({ children }) {
+  const [dbDefaults, setDbDefaults] = useState(defaultSiteContent);
   const [content, setContent] = useState(() => parseStoredContent());
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadDbDefaults = async () => {
+      try {
+        const res = await fetch(DB_FILE_PATH);
+        if (!res.ok) return;
+        const dbData = await res.json();
+        const mergedDefaults = mergeWithDefaults(defaultSiteContent, dbData);
+        if (!isMounted) return;
+
+        setDbDefaults(mergedDefaults);
+
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          setContent(mergedDefaults);
+          return;
+        }
+
+        const parsed = JSON.parse(raw);
+        setContent(mergeWithDefaults(mergedDefaults, parsed));
+      } catch (error) {
+        console.error("Failed to load .db defaults:", error);
+      }
+    };
+
+    loadDbDefaults();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -56,10 +91,10 @@ export function SiteContentProvider({ children }) {
     () => ({
       content,
       setContent,
-      resetContent: () => setContent(defaultSiteContent),
+      resetContent: () => setContent(dbDefaults),
       exportContent: () => JSON.stringify(content, null, 2),
     }),
-    [content]
+    [content, dbDefaults]
   );
 
   return <SiteContentContext.Provider value={value}>{children}</SiteContentContext.Provider>;

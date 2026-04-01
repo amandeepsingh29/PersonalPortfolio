@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useTheme } from "../ThemeContext";
 import { useSiteContent } from "../SiteContentContext";
-import { Save, Plus, Trash2 } from "lucide-react";
+import { Save, Plus, Trash2, Download } from "lucide-react";
 
 const inputClass =
   "w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-800 outline-none focus:border-red-500 dark:border-gray-700 dark:bg-[#0b0b12] dark:text-gray-100";
@@ -167,6 +167,26 @@ export default function AdminDashboard() {
     setLastSavedAt(new Date());
   };
 
+  const downloadJson = () => {
+    try {
+      const payload = JSON.stringify(draftContent, null, 2);
+      const blob = new Blob([payload], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `portfolio-content-${stamp}.json`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      setStatus("JSON downloaded successfully.");
+    } catch (error) {
+      console.error("Download JSON failed:", error);
+      setStatus("Failed to download JSON.");
+    }
+  };
+
   const projects = draftContent.projects || {};
   const projectItems = projects.items || [];
   const blogPosts = draftContent.blogPosts || [];
@@ -190,6 +210,9 @@ export default function AdminDashboard() {
         <div className="flex flex-wrap gap-2">
           <ActionButton onClick={saveAll} disabled={!isDirty} variant="primary">
             <Save size={15} /> Save
+          </ActionButton>
+          <ActionButton onClick={downloadJson}>
+            <Download size={15} /> Download JSON
           </ActionButton>
         </div>
       </div>
