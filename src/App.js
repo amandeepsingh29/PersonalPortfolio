@@ -15,6 +15,11 @@ import Journey from "./components/Journey";
 import ProjectsSection from "./components/projects-section";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminImageGate from "./components/AdminImageGate";
+import DevHud from "./components/DevHud";
+import DevCommandPalette from "./components/DevCommandPalette";
+import DevMatrixRain from "./components/DevMatrixRain";
+import DevBootSequence from "./components/DevBootSequence";
+import DevRouteBadges from "./components/DevRouteBadges";
 
 // Component to handle hash scrolling after navigation
 function ScrollToHash() {
@@ -63,8 +68,11 @@ function AppContent() {
         <ScrollToHash />
         {isDev && <div className="dev-grid-overlay" />}
         {isDev && <div className="dev-scanline-overlay" />}
+        <DevMatrixRain />
+        <DevBootSequence />
         <div className="grain-overlay" />
         <Header />
+        <DevRouteBadges />
         <main className="pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -73,6 +81,8 @@ function AppContent() {
           </Routes>
         </main>
         <Footer />
+        <DevHud />
+        <DevCommandPalette />
         <CustomCursor />
       </div>
     </Router>
