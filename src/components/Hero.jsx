@@ -193,8 +193,12 @@ const Hero = () => {
         <div onMouseMove={handleSpotlight} className={`card-spotlight md:col-span-2 rounded-2xl p-8 card-lift ${isDark ? 'bg-[#1a1a24] border border-gray-800' : 'bg-white border border-gray-100'}`}>
           <h3 className={`font-mono-space text-[11px] font-bold uppercase tracking-[0.2em] mb-5 ${isDev ? 'text-emerald-400' : 'text-red-600'}`}>[ ABOUT ]</h3>
           <div className={`space-y-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            <p>I'm passionate about building modern web applications and scalable systems. I work across the full stack — from crafting intuitive interfaces to designing robust backend architectures.</p>
-            <p>I enjoy exploring new technologies, contributing to open-source, and sharing knowledge with the developer community.</p>
+            <p>Hi, Amandeep this side.</p>
+            <p>I am passionate about software development, but not just about the typical buzz words. I like getting into system design, architecture, and functionality.</p>
+            <p>Worked in various domains ranging from DBs to AI/ML to Neurotech.</p>
+            <p>Joined Engineering team @Oracle, place where systems meet scale.</p>
+            <p>Curious about something? Get in touch :)</p>
+            <p>Would love to connect and grind over ideas.</p>
           </div>
         </div>
 
