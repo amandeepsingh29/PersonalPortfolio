@@ -10,6 +10,8 @@ const Hero = () => {
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
   const [nameComplete, setNameComplete] = useState(false);
+  const [lightImgError, setLightImgError] = useState(false);
+  const [darkImgError, setDarkImgError] = useState(false);
 
   // Mouse position for interactive background blob
   const [mousePos, setMousePos] = useState({ x: -1000, y: -1000 });
@@ -149,18 +151,24 @@ const Hero = () => {
         <div className="rounded-2xl overflow-hidden tilt-card" onMouseMove={handleTilt} onMouseLeave={handleTiltReset}>
           <div className={`w-full aspect-square relative ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-800'}`}>
             <img
-              src={isDark ? '/profile2.jpg' : '/profile.jpg'}
+              src="/profile.jpg"
               alt="Amandeep Singh"
-              className="w-full h-full object-cover"
+              className={`absolute inset-0 w-full h-full object-cover ${isDark ? 'hidden' : 'block'}`}
               loading="eager"
               fetchPriority="high"
               decoding="async"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
+              onError={() => setLightImgError(true)}
             />
-            <div className={`w-full h-full items-center justify-center absolute inset-0 hidden ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-800'}`}>
+            <img
+              src="/profile2.jpg"
+              alt="Amandeep Singh dark"
+              className={`absolute inset-0 w-full h-full object-cover ${isDark ? 'block' : 'hidden'}`}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+              onError={() => setDarkImgError(true)}
+            />
+            <div className={`w-full h-full items-center justify-center absolute inset-0 ${(isDark ? darkImgError : lightImgError) ? 'flex' : 'hidden'} ${isDark ? 'bg-[#1a1a24]' : 'bg-gray-800'}`}>
               <span className="text-6xl font-black text-red-600 tracking-tighter">AS</span>
             </div>
           </div>
