@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Search, CornerDownLeft } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
-import { getDevAccent, useDevActiveSection } from '../hooks/useDevActiveSection';
+import { useDevActiveSection, useInterpolatedDevAccent } from '../hooks/useDevActiveSection';
 
 const baseCommands = [
   { id: 'about', label: 'Open About', run: () => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }) },
@@ -16,7 +16,7 @@ const baseCommands = [
 export default function DevCommandPalette() {
   const { isDev } = useTheme();
   const activeSection = useDevActiveSection(isDev);
-  const accent = getDevAccent(activeSection);
+  const accent = useInterpolatedDevAccent(activeSection, isDev, 340);
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
@@ -77,7 +77,7 @@ export default function DevCommandPalette() {
   return (
     <div className="fixed inset-0 z-[90] flex items-start justify-center bg-black/40 p-4 pt-24 backdrop-blur-sm" onClick={() => setOpen(false)}>
       <div
-        className="w-full max-w-xl rounded-2xl border bg-[#06120f]/95"
+        className="w-full max-w-xl rounded-2xl border bg-[#06120f]/95 transition-[border-color,box-shadow] duration-300"
         style={{
           borderColor: `rgba(${accent.rgb},0.32)`,
           boxShadow: `0 0 40px rgba(${accent.rgb},0.2)`,

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTheme } from '../ThemeContext';
-import { DEV_SECTIONS, getDevAccent, useDevActiveSection } from '../hooks/useDevActiveSection';
+import { DEV_SECTIONS, getDevAccent, useDevActiveSection, useInterpolatedDevAccent } from '../hooks/useDevActiveSection';
 
 const sections = DEV_SECTIONS.map((id) => ({ id, label: getDevAccent(id).label }));
 
@@ -47,14 +47,14 @@ export default function DevRouteBadges() {
     [activeSection, latencyMap]
   );
 
-  const activeAccent = getDevAccent(activeSection);
+  const activeAccent = useInterpolatedDevAccent(activeSection, isDev, 340);
 
   if (!isDev) return null;
 
   return (
     <div className="fixed left-4 top-1/2 z-[79] hidden -translate-y-1/2 xl:flex">
       <div
-        className="w-44 rounded-2xl border bg-[#04110d]/80 p-2 backdrop-blur-xl"
+        className="w-44 rounded-2xl border bg-[#04110d]/80 p-2 backdrop-blur-xl transition-[border-color,box-shadow] duration-300"
         style={{
           borderColor: `rgba(${activeAccent.rgb},0.3)`,
           boxShadow: `0 0 30px rgba(${activeAccent.rgb},0.16)`,

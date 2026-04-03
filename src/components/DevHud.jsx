@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TerminalSquare, Minimize2, Maximize2, Crosshair, Activity } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
-import { getDevAccent, useDevActiveSection } from '../hooks/useDevActiveSection';
+import { useDevActiveSection, useInterpolatedDevAccent } from '../hooks/useDevActiveSection';
 
 const commandLinks = [
   { label: 'cd about', target: 'about' },
@@ -22,7 +22,7 @@ const statusFeed = [
 export default function DevHud() {
   const { isDev } = useTheme();
   const activeSection = useDevActiveSection(isDev);
-  const accent = getDevAccent(activeSection);
+  const accent = useInterpolatedDevAccent(activeSection, isDev, 340);
   const [minimized, setMinimized] = useState(false);
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [clock, setClock] = useState(() => new Date());
@@ -157,7 +157,7 @@ export default function DevHud() {
   return (
     <div className="fixed bottom-4 right-4 z-[80] hidden md:block">
       <div
-        className="w-[320px] rounded-2xl border bg-[#04110d]/85 p-3 backdrop-blur-xl"
+        className="w-[320px] rounded-2xl border bg-[#04110d]/85 p-3 backdrop-blur-xl transition-[border-color,box-shadow] duration-300"
         style={{
           borderColor: `rgba(${accent.rgb},0.34)`,
           boxShadow: `0 0 30px rgba(${accent.rgb},0.16)`,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const DEV_SECTIONS = ['about', 'blogs', 'projects', 'reads', 'contact'];
 
@@ -12,6 +12,50 @@ export const DEV_SECTION_ACCENTS = {
 
 export function getDevAccent(sectionId) {
   return DEV_SECTION_ACCENTS[sectionId] || DEV_SECTION_ACCENTS.about;
+}
+
+function parseRgbString(rgb) {
+  const [r = 16, g = 185, b = 129] = String(rgb)
+    .split(',')
+    .map((value) => Number(value.trim()));
+  return [r, g, b];
+}
+
+export function useInterpolatedDevAccent(sectionId, enabled, durationMs = 280) {
+  const [currentRgb, setCurrentRgb] = useState(() => parseRgbString(getDevAccent(sectionId).rgb));
+  const currentRgbRef = useRef(currentRgb);
+
+  useEffect(() => {
+    currentRgbRef.current = currentRgb;
+  }, [currentRgb]);
+
+  useEffect(() => {
+    if (!enabled) return undefined;
+
+    const targetRgb = parseRgbString(getDevAccent(sectionId).rgb);
+    const startRgb = currentRgbRef.current;
+    const startAt = performance.now();
+    let rafId;
+
+    const tick = (now) => {
+      const progress = Math.min(1, (now - startAt) / durationMs);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const nextRgb = startRgb.map((start, index) => Math.round(start + (targetRgb[index] - start) * eased));
+      setCurrentRgb(nextRgb);
+
+      if (progress < 1) {
+        rafId = requestAnimationFrame(tick);
+      }
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [sectionId, enabled, durationMs]);
+
+  return {
+    rgb: currentRgb.join(','),
+    label: getDevAccent(sectionId).label,
+  };
 }
 
 export function useDevActiveSection(enabled) {
