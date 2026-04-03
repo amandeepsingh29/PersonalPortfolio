@@ -20,6 +20,7 @@ import DevCommandPalette from "./components/DevCommandPalette";
 import DevMatrixRain from "./components/DevMatrixRain";
 import DevBootSequence from "./components/DevBootSequence";
 import DevRouteBadges from "./components/DevRouteBadges";
+import ThemeCoachmark from "./components/ThemeCoachmark";
 
 // Component to handle hash scrolling after navigation
 function ScrollToHash() {
@@ -72,6 +73,7 @@ function AppContent() {
         <DevBootSequence />
         <div className="grain-overlay" />
         <Header />
+        <ThemeCoachmark />
         <DevRouteBadges />
         <main className="pt-20">
           <Routes>
