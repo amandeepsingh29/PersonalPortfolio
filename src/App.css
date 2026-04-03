@@ -1,9 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 /* Base styles */
 .App {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   transition: background-color 0s;
+}
+
+.App.dev-mode {
+  font-family: 'JetBrains Mono', 'Space Mono', monospace;
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(16, 185, 129, 0.07), transparent 38%),
+    radial-gradient(circle at 88% 80%, rgba(20, 184, 166, 0.08), transparent 35%),
+    linear-gradient(180deg, #040a0a 0%, #050b0b 65%, #030808 100%);
 }
 
 .font-mono-space {
@@ -28,6 +36,35 @@ html {
   z-index: 9998;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+.dev-grid-overlay,
+.dev-scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dev-grid-overlay {
+  z-index: 9995;
+  opacity: 0.16;
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
+}
+
+.dev-scanline-overlay {
+  z-index: 9996;
+  opacity: 0.08;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(20, 184, 166, 0.45) 0px,
+    rgba(20, 184, 166, 0.45) 1px,
+    transparent 3px,
+    transparent 6px
+  );
 }
 
 /* ============================================
@@ -200,6 +237,14 @@ html {
   );
 }
 
+.dev-mode .card-spotlight::after {
+  background: radial-gradient(
+    350px circle at var(--spotlight-x, -400px) var(--spotlight-y, -400px),
+    rgba(16, 185, 129, 0.16),
+    transparent 62%
+  );
+}
+
 /* ============================================
    FLOATING GRADIENT ORBS
    ============================================ */
@@ -303,6 +348,16 @@ html {
   opacity: 0;
 }
 
+.dev-mode .custom-cursor {
+  border-color: #10b981;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
+}
+
+.dev-mode .custom-cursor.hovering {
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: #34d399;
+}
+
 .custom-cursor.visible {
   opacity: 1;
 }
@@ -325,6 +380,11 @@ html {
   transform: translate(-50%, -50%);
   transition: opacity 0.3s ease;
   opacity: 0;
+}
+
+.dev-mode .cursor-dot {
+  background: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
 }
 
 .cursor-dot.visible {
@@ -368,6 +428,11 @@ html {
   color: #f5f5f5;
 }
 
+.dev-mode ::selection {
+  background-color: rgba(16, 185, 129, 0.25);
+  color: #d1fae5;
+}
+
 /* ============================================
    CUSTOM SCROLLBAR
    ============================================ */
@@ -395,12 +460,21 @@ html {
   border: 2px solid #0f0f14;
 }
 
+.dev-mode ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #10b981 0%, #0f766e 100%);
+  border: 2px solid #050b0b;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+}
+
+.dev-mode ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
 }
 
 /* Firefox scrollbar */
@@ -411,6 +485,10 @@ html {
 
 .dark * {
   scrollbar-color: #dc2626 transparent;
+}
+
+.dev-mode * {
+  scrollbar-color: #10b981 transparent;
 }
 
 
@@ -495,7 +573,8 @@ html {
 }
 
 .theme-toggle-btn .icon-sun,
-.theme-toggle-btn .icon-moon {
+.theme-toggle-btn .icon-moon,
+.theme-toggle-btn .icon-dev {
   position: absolute;
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), 
               opacity 0.3s ease;
@@ -519,4 +598,20 @@ html {
 .theme-toggle-btn .icon-moon {
   transform: rotate(0deg) scale(1);
   opacity: 1;
+}
+
+.theme-toggle-btn .icon-dev {
+  transform: rotate(90deg) scale(0);
+  opacity: 0;
+}
+
+.dev-mode .theme-toggle-btn .icon-dev {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.dev-mode .theme-toggle-btn .icon-sun,
+.dev-mode .theme-toggle-btn .icon-moon {
+  transform: rotate(-90deg) scale(0);
+  opacity: 0;
 }

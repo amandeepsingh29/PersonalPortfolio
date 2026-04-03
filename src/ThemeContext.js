@@ -1,22 +1,47 @@
-import React, { createContext, useContext, useState, useCallback, useRef } from 'react';
+import React, { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
 
 const ThemeContext = createContext();
 
 export const useTheme = () => useContext(ThemeContext);
 
+const getNextThemeMode = (mode) => {
+  if (mode === 'light') return 'dark';
+  if (mode === 'dark') return 'dev';
+  return 'light';
+};
+
+const getOverlayColor = (mode) => {
+  if (mode === 'light') return '#F5F1E8';
+  if (mode === 'dev') return '#050b0b';
+  return '#0f0f14';
+};
+
 export const ThemeProvider = ({ children }) => {
-  const [isDark, setIsDark] = useState(false);
+  const [themeMode, setThemeMode] = useState(() => {
+    if (typeof window === 'undefined') return 'light';
+    const saved = window.localStorage.getItem('portfolio-theme-mode');
+    return saved === 'dark' || saved === 'dev' || saved === 'light' ? saved : 'light';
+  });
   const [isAnimating, setIsAnimating] = useState(false);
   const overlayRef = useRef(null);
   const toggleOrigin = useRef({ x: 0, y: 0 });
+  const isDark = themeMode !== 'light';
+  const isDev = themeMode === 'dev';
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    window.localStorage.setItem('portfolio-theme-mode', themeMode);
+  }, [themeMode]);
 
   const toggleTheme = useCallback((e) => {
     if (isAnimating) return;
 
+    const nextMode = getNextThemeMode(themeMode);
+
     // Get click origin for the circle reveal
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    const rect = e?.currentTarget?.getBoundingClientRect?.();
+    const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+    const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
     toggleOrigin.current = { x, y };
 
     // Calculate the max radius needed to cover the entire screen
@@ -32,12 +57,12 @@ export const ThemeProvider = ({ children }) => {
       overlay.style.setProperty('--cx', `${x}px`);
       overlay.style.setProperty('--cy', `${y}px`);
       overlay.style.setProperty('--max-r', `${maxRadius}px`);
-      overlay.style.background = isDark ? '#F5F1E8' : '#0f0f14';
+      overlay.style.background = getOverlayColor(nextMode);
       overlay.classList.add('theme-woosh-active');
 
       // Flip theme at the midpoint
       setTimeout(() => {
-        setIsDark((prev) => !prev);
+        setThemeMode(nextMode);
       }, 350);
 
       // Remove overlay after animation
@@ -46,10 +71,10 @@ export const ThemeProvider = ({ children }) => {
         setIsAnimating(false);
       }, 700);
     }
-  }, [isDark, isAnimating]);
+  }, [themeMode, isAnimating]);
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme, isAnimating }}>
+    <ThemeContext.Provider value={{ isDark, isDev, themeMode, toggleTheme, isAnimating }}>
       {/* Woosh overlay */}
       <div ref={overlayRef} className="theme-woosh-overlay" />
       {children}

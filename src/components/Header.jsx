@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Code2 } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import SpotifyWidget from './SpotifyWidget';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, isDev, toggleTheme } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -26,7 +26,11 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-      ? isDark ? 'bg-[#0f0f14]/90 backdrop-blur-md shadow-sm shadow-black/20' : 'bg-[#F5F1E8]/90 backdrop-blur-md shadow-sm'
+      ? isDev
+        ? 'bg-[#050b0b]/85 backdrop-blur-md shadow-sm shadow-emerald-900/30 border-b border-emerald-500/20'
+        : isDark
+          ? 'bg-[#0f0f14]/90 backdrop-blur-md shadow-sm shadow-black/20'
+          : 'bg-[#F5F1E8]/90 backdrop-blur-md shadow-sm'
       : 'bg-transparent'
       }`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-2 sm:gap-3">
@@ -34,6 +38,11 @@ const Header = () => {
           <Link to="/" className={`text-2xl font-black tracking-tighter ${isDark ? 'text-white' : 'text-gray-900'}`}>
             AS<span className="text-red-600">.</span>
           </Link>
+          {isDev && (
+            <span className="hidden md:inline-flex items-center rounded-full border border-emerald-400/40 bg-emerald-500/10 px-2.5 py-1 text-[10px] font-bold tracking-[0.18em] text-emerald-300">
+              DEV MODE
+            </span>
+          )}
           <SpotifyWidget />
         </div>
 
@@ -46,7 +55,9 @@ const Header = () => {
                 key={item.label}
                 to={item.href}
                 className={`px-4 py-2 text-sm rounded-full transition-all duration-200 ${isDark
-                  ? 'text-gray-400 hover:text-white hover:bg-white/10'
+                  ? isDev
+                    ? 'text-emerald-200/70 hover:text-emerald-100 hover:bg-emerald-500/10'
+                    : 'text-gray-400 hover:text-white hover:bg-white/10'
                   : 'text-gray-600 hover:text-gray-900 hover:bg-white/60'
                   }`}
               >
@@ -57,11 +68,12 @@ const Header = () => {
             {/* Dark mode toggle */}
             <button
               onClick={toggleTheme}
-              className={`theme-toggle-btn ml-2 ${isDark ? 'text-yellow-400 hover:bg-white/10' : 'text-gray-600 hover:bg-gray-200/60'} rounded-full transition-colors`}
-              aria-label="Toggle dark mode"
+              className={`theme-toggle-btn ml-2 ${isDark ? (isDev ? 'text-emerald-300 hover:bg-emerald-500/10' : 'text-yellow-400 hover:bg-white/10') : 'text-gray-600 hover:bg-gray-200/60'} rounded-full transition-colors`}
+              aria-label="Cycle theme"
             >
               <Sun size={18} className="icon-sun" />
               <Moon size={18} className="icon-moon" />
+              <Code2 size={18} className="icon-dev" />
             </button>
 
             <a
@@ -69,7 +81,9 @@ const Header = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`ml-2 px-5 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${isDark
-                ? 'text-gray-900 bg-white hover:bg-red-500 hover:text-white'
+                ? isDev
+                  ? 'text-[#05110d] bg-emerald-300 hover:bg-emerald-400 hover:text-[#02110b]'
+                  : 'text-gray-900 bg-white hover:bg-red-500 hover:text-white'
                 : 'text-white bg-gray-900 hover:bg-red-600'
                 }`}
             >
@@ -82,11 +96,12 @@ const Header = () => {
         <div className="lg:hidden flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={toggleTheme}
-            className={`theme-toggle-btn ${isDark ? 'text-yellow-400' : 'text-gray-600'}`}
-            aria-label="Toggle dark mode"
+            className={`theme-toggle-btn ${isDark ? (isDev ? 'text-emerald-300' : 'text-yellow-400') : 'text-gray-600'}`}
+            aria-label="Cycle theme"
           >
             <Sun size={18} className="icon-sun" />
             <Moon size={18} className="icon-moon" />
+            <Code2 size={18} className="icon-dev" />
           </button>
           <button
             className={`relative w-10 h-10 flex items-center justify-center rounded-full transition-colors ${isDark ? 'text-white hover:bg-white/10' : 'text-gray-900 hover:bg-gray-100'}`}
@@ -114,7 +129,7 @@ const Header = () => {
       {/* Mobile Nav Circular Popup Box */}
       <div
         className={`lg:hidden fixed top-20 right-3 left-3 sm:right-6 sm:left-auto z-50 w-auto sm:w-56 p-2 rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] origin-top-right transition-all duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${mobileOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-90 opacity-0 -translate-y-6 pointer-events-none'
-          } ${isDark ? 'bg-[#1a1a24]/95 backdrop-blur-2xl border border-gray-800' : 'bg-white/95 backdrop-blur-2xl border border-gray-200'}`}
+          } ${isDark ? (isDev ? 'bg-[#05110d]/95 backdrop-blur-2xl border border-emerald-500/20' : 'bg-[#1a1a24]/95 backdrop-blur-2xl border border-gray-800') : 'bg-white/95 backdrop-blur-2xl border border-gray-200'}`}
       >
         <div className="flex flex-col gap-1 px-3 py-4">
           {navItems.map((item, index) => (
@@ -123,7 +138,9 @@ const Header = () => {
               to={item.href}
               onClick={() => setMobileOpen(false)}
               className={`block px-4 py-3 text-center text-sm font-semibold rounded-full transition-all duration-300 ${isDark
-                ? 'text-gray-400 hover:text-white hover:bg-white/10'
+                ? isDev
+                  ? 'text-emerald-100/70 hover:text-emerald-100 hover:bg-emerald-500/10'
+                  : 'text-gray-400 hover:text-white hover:bg-white/10'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-black/5'
                 }`}
               style={{
@@ -142,7 +159,9 @@ const Header = () => {
             rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
             className={`mt-4 block px-4 py-3.5 text-center text-sm font-bold rounded-full transition-all ${isDark
-              ? 'text-gray-900 bg-white hover:bg-red-500 hover:text-white shadow-[0_0_20px_rgba(255,255,255,0.1)]'
+              ? isDev
+                ? 'text-[#05110d] bg-emerald-300 hover:bg-emerald-400 hover:text-[#02110b] shadow-[0_0_20px_rgba(16,185,129,0.25)]'
+                : 'text-gray-900 bg-white hover:bg-red-500 hover:text-white shadow-[0_0_20px_rgba(255,255,255,0.1)]'
               : 'text-white bg-gray-900 hover:bg-red-600 shadow-[0_0_20px_rgba(0,0,0,0.1)]'
               }`}
             style={{

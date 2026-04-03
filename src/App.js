@@ -49,11 +49,20 @@ function Home() {
 }
 
 function AppContent() {
-  const { isDark } = useTheme();
+  const { isDark, isDev } = useTheme();
+
+  const appThemeClasses = isDev
+    ? 'dark dev-mode bg-[#050b0b]'
+    : isDark
+      ? 'dark bg-[#0f0f14]'
+      : 'bg-[#F5F1E8]';
+
   return (
     <Router>
-      <div className={`App min-h-screen transition-colors duration-0 ${isDark ? 'dark bg-[#0f0f14]' : 'bg-[#F5F1E8]'}`}>
+      <div className={`App min-h-screen transition-colors duration-0 ${appThemeClasses}`}>
         <ScrollToHash />
+        {isDev && <div className="dev-grid-overlay" />}
+        {isDev && <div className="dev-scanline-overlay" />}
         <div className="grain-overlay" />
         <Header />
         <main className="pt-20">

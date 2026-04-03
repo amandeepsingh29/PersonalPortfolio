@@ -25,14 +25,14 @@ const LiveClock = ({ isDark }) => {
 };
 
 const Footer = () => {
-  const { isDark } = useTheme();
+  const { isDark, isDev } = useTheme();
   const { content } = useSiteContent();
 
   const footer = content.footer || {};
   const socials = (footer.socials || []).filter((item) => iconMap[item.platform]);
 
   return (
-    <footer className={`border-t ${isDark ? 'border-gray-800 bg-[#0f0f14]' : 'border-gray-200 bg-[#F5F1E8]'}`}>
+    <footer className="relative bg-transparent">
       <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex flex-col items-center md:items-start gap-2">
@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className={`mt-8 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3 ${isDark ? 'border-gray-800' : 'border-gray-200'}`}>
+        <div className={`mt-8 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3 ${isDev ? 'border-emerald-500/20' : isDark ? 'border-gray-800' : 'border-gray-200'}`}>
           <p className={`text-xs font-mono-space ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
             &copy; {new Date().getFullYear()} Amandeep Singh
           </p>
