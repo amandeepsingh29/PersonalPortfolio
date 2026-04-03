@@ -22,6 +22,14 @@ const Hero = () => {
     return () => window.removeEventListener('mousemove', handleGlobalMouseMove);
   }, []);
 
+  useEffect(() => {
+    // Warm both theme images in browser cache for instant theme switching.
+    ['/profile.jpg', '/profile2.jpg'].forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   // Card spotlight — mouse-following radial gradient
   const handleSpotlight = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -144,6 +152,9 @@ const Hero = () => {
               src={isDark ? '/profile2.jpg' : '/profile.jpg'}
               alt="Amandeep Singh"
               className="w-full h-full object-cover"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
