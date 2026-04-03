@@ -101,6 +101,12 @@ export function CircularTestimonials({
     setExpandedQuote(false);
   }, [activeIndex]);
 
+  const handleSpotlightMove = useCallback((e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--spotlight-x", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--spotlight-y", `${e.clientY - rect.top}px`);
+  }, []);
+
   function getImageStyle(index) {
     const gap = calculateGap(containerWidth);
     const maxStickUp = gap * 0.8;
@@ -162,7 +168,11 @@ export function CircularTestimonials({
   return (
     <div className="w-full max-w-5xl px-2 sm:px-4 lg:px-8">
       <div className="grid gap-10 md:grid-cols-2 md:gap-12">
-        <div className="relative h-[20rem] w-full [perspective:1000px] sm:h-[24rem]" ref={imageContainerRef}>
+        <div
+          className="card-spotlight relative h-[20rem] w-full rounded-3xl [perspective:1000px] sm:h-[24rem]"
+          ref={imageContainerRef}
+          onMouseMove={handleSpotlightMove}
+        >
           {testimonials.map((testimonial, index) => (
             <img
               key={`${testimonial.src}-${index}`}
@@ -184,7 +194,8 @@ export function CircularTestimonials({
               animate="animate"
               exit="exit"
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white/70 p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.03]"
+              className="card-spotlight flex h-full flex-col overflow-hidden rounded-2xl border border-black/5 bg-white/70 p-5 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/[0.03]"
+              onMouseMove={handleSpotlightMove}
             >
               <a
                 href={activeTestimonial.url || "#"}

@@ -71,8 +71,8 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div ref={cursorRef} className={`custom-cursor ${hovering ? 'hovering' : ''}`} />
-      <div ref={dotRef} className="cursor-dot" />
+      <div ref={cursorRef} className={`custom-cursor visible ${hovering ? 'hovering' : ''}`} />
+      <div ref={dotRef} className="cursor-dot visible" />
     </>
   );
 }
