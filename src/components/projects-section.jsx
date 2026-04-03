@@ -35,8 +35,8 @@ export default function ProjectsSection() {
   if (!testimonials.length) return null;
 
   return (
-    <section id="projects" className={`relative overflow-hidden py-24 ${isDark ? "bg-[#0f0f14]" : "bg-[#F5F1E8]"}`}>
-      <div className="mx-auto mb-14 flex max-w-6xl items-end justify-between px-6">
+    <section id="projects" className="relative overflow-hidden py-24">
+      <div className="relative z-10 mx-auto mb-14 flex max-w-6xl items-end justify-between px-6">
         <div>
           <p className="mb-3 font-mono-space text-[11px] font-bold uppercase tracking-[0.2em] text-red-600">[ PROJECTS ]</p>
           <h2 className={`text-3xl font-bold tracking-tight ${isDark ? "text-white" : "text-gray-900"}`}>
@@ -56,7 +56,7 @@ export default function ProjectsSection() {
         </a>
       </div>
 
-      <div className="mx-auto flex max-w-6xl justify-center px-4 sm:px-6">
+      <div className="relative z-10 mx-auto flex max-w-6xl justify-center px-4 sm:px-6">
         <CircularTestimonials
           testimonials={testimonials}
           autoplay={true}
