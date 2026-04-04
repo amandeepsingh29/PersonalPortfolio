@@ -63,6 +63,26 @@ function AppContent() {
       ? 'dark bg-[#0f0f14]'
       : 'bg-[#F5F1E8]';
 
+  useEffect(() => {
+    const applyNewTabBehavior = () => {
+      const anchors = document.querySelectorAll('a[href]');
+      anchors.forEach((anchor) => {
+        anchor.setAttribute('target', '_blank');
+        anchor.setAttribute('rel', 'noopener noreferrer');
+      });
+    };
+
+    applyNewTabBehavior();
+
+    const observer = new MutationObserver(() => {
+      applyNewTabBehavior();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Router>
       <div className={`App min-h-screen transition-colors duration-0 ${appThemeClasses}`}>

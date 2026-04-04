@@ -71,7 +71,7 @@ export default function ProjectsSection() {
           fontSizes={{
             name: "clamp(1.4rem, 1.2rem + 0.8vw, 2rem)",
             designation: "clamp(0.88rem, 0.8rem + 0.2vw, 1rem)",
-            quote: "clamp(1rem, 0.95rem + 0.4vw, 1.2rem)",
+            quote: "clamp(0.9rem, 0.84rem + 0.28vw, 1.02rem)",
           }}
         />
       </div>

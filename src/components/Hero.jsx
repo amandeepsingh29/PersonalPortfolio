@@ -195,10 +195,8 @@ const Hero = () => {
           <div className={`space-y-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
             <p>Hi, Amandeep this side.</p>
             <p>I am passionate about software development, but not just about the typical buzz words. I like getting into system design, architecture, and functionality.</p>
-            <p>Worked in various domains ranging from DBs to AI/ML to Neurotech.</p>
-            <p>Joined Engineering team @Oracle, place where systems meet scale.</p>
-            <p>Curious about something? Get in touch :)</p>
-            <p>Would love to connect and grind over ideas.</p>
+            <p>Worked in various domains ranging from DBs to AI/ML to Neurotech. Joined Engineering team @Oracle, place where systems meet scale.</p>
+            <p>Curious about something? Get in touch :) Would love to connect and grind over ideas.</p>
           </div>
         </div>
 

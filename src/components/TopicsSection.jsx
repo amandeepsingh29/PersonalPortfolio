@@ -31,11 +31,11 @@ const TopicsSection = () => {
               <div key={index} className="stagger-child relative" style={staggerDelay(index)}>
                 <a
                   href={topic.url}
-                  className={`group rounded-2xl p-6 flex flex-col min-h-[180px] justify-between card-lift ${isDark ? 'bg-[#1a1a24] border border-gray-800 hover:border-red-900' : 'bg-white border border-gray-100 hover:border-red-100'}`}
+                  className={`group rounded-2xl p-6 flex h-[240px] flex-col justify-between card-lift ${isDark ? 'bg-[#1a1a24] border border-gray-800 hover:border-red-900' : 'bg-white border border-gray-100 hover:border-red-100'}`}
                 >
                   <span className="text-3xl mb-4">{icons[index] || '📌'}</span>
                   <div>
-                    <h3 className={`text-base font-bold group-hover:text-red-600 transition-colors mb-1 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`mb-1 min-h-[96px] text-base font-bold leading-tight group-hover:text-red-600 transition-colors ${isDark ? 'text-white' : 'text-gray-900'}`}>
                       {topic.title}
                     </h3>
                     <span className={`inline-flex items-center gap-1 text-xs group-hover:text-red-500 transition-colors ${isDark ? 'text-gray-600' : 'text-gray-400'}`}>
