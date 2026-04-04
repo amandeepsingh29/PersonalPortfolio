@@ -51,10 +51,10 @@ export const defaultSiteContent = {
     { title: "Scaling PostgreSQL to power 800 million ChatGPT users", url: "https://openai.com/index/scaling-postgresql/" },
   ],
   topics: [
-    { title: "Machine Learning & Artificial Intelligence", url: "#" },
-    { title: "System Design & Scalable Systems", url: "#" },
-    { title: "Cloud & Devops", url: "#" },
-    { title: "Data Structures and Algorithms", url: "#" },
+    { title: "Machine Learning & Artificial Intelligence", url: "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/machine-learning-ai.md" },
+    { title: "System Design & Scalable Systems", url: "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/system-design-scalable-systems.md" },
+    { title: "Cloud & Devops", url: "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/cloud-devops.md" },
+    { title: "Data Structures and Algorithms", url: "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/data-structures-algorithms.md" },
   ],
   contact: {
     title: "Let's connect",

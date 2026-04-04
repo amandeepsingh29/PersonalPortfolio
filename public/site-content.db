@@ -97,19 +97,19 @@
   "topics": [
     {
       "title": "Machine Learning & Artificial Intelligence",
-      "url": "#"
+      "url": "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/machine-learning-ai.md"
     },
     {
       "title": "System Design & Scalable Systems",
-      "url": "#"
+      "url": "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/system-design-scalable-systems.md"
     },
     {
       "title": "Cloud & Devops",
-      "url": "#"
+      "url": "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/cloud-devops.md"
     },
     {
       "title": "Data Structures and Algorithms",
-      "url": "#"
+      "url": "https://github.com/amandeepsingh29/EngineeringTopics/blob/main/data-structures-algorithms.md"
     }
   ],
   "contact": {
