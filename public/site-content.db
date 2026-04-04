@@ -37,6 +37,14 @@
         "url": "https://github.com/amandeepsingh29/SpeechBiometricsSystem",
         "image": "/images/projects/SpeechBiometricsSystem.png",
         "stars": 0
+      },
+      {
+        "name": "Movie Match",
+        "description": "MovieMatch is a room-based movie discovery app where friends join a shared session, pick preferences, and swipe through a merged movie list.",
+        "lang": "React + Node.js",
+        "url": "https://github.com/amandeepsingh29/MovieMatch",
+        "image": "/images/projects/MovieMatch.png",
+        "stars": 0
       }
     ],
     "images": [
