@@ -7,44 +7,100 @@
     "repoUrl": "https://github.com/amandeepsingh29",
     "items": [
       {
-        "name": "Rate Limiter 💡",
-        "description": "A production-friendly Rate Limiter implementation using Spring Boot, Redis, and Lua scripting to ensure atomic & race-condition safe request limiting at scale.",
-        "lang": "Spring Boot + Redis + Lua",
-        "url": "https://github.com/amandeepsingh29/RateLimiter",
+        "name": "AstraCDN",
+        "description": "",
+        "lang": "Go",
+        "url": "https://github.com/amandeepsingh29/AstraCDN",
         "stars": 0,
-        "image": "/images/projects/RateLimiter.png"
-      },
-      {
-        "name": "Trace Pulse ⚡",
-        "description": "Lightweight API Latency Analyzer\nTrace any API endpoint and get a granular breakdown of DNS, TCP, TLS, server processing, and content transfer timings.",
-        "lang": "React",
-        "url": "https://github.com/amandeepsingh29/TracePulse",
-        "stars": 0,
-        "image": "/images/projects/TracePulse.png"
+        "image": "/images/projects/AstraCDN.png"
       },
       {
         "name": "SCALPEL",
-        "description": "This project implements an interpretable AI assistant for dermoscopic skin lesion analysis.\nInstead of predicting a diagnosis directly from an image, the system first predicts clinically meaningful dermoscopic concepts .",
+        "description": "",
         "lang": "Python + PyTorch",
         "url": "https://github.com/amandeepsingh29/SCALPEL",
         "stars": 0,
         "image": "/images/projects/SCALPEL.jpg"
       },
       {
-        "name": "Speech Biometrics System",
-        "description": "A comprehensive speech biometrics system built with SpeechBrain and Streamlit for speaker enrollment, identification, and verification using ECAPA-TDNN deep learning models.",
+        "name": "SecureCodeAuditor",
+        "description": "",
+        "lang": "Jupyter Notebook",
+        "url": "https://github.com/amandeepsingh29/SecureCodeAuditor",
+        "stars": 0,
+        "image": "/images/projects/SecureCodeAuditor.png"
+      },
+      {
+        "name": "MovieMatch",
+        "description": "",
+        "lang": "JavaScript",
+        "url": "https://github.com/amandeepsingh29/MovieMatch",
+        "image": "/images/projects/MovieMatch.png",
+        "stars": 0
+      },
+      {
+        "name": "SpeechBiometricsSystem",
+        "description": "",
         "lang": "Python + PyTorch",
         "url": "https://github.com/amandeepsingh29/SpeechBiometricsSystem",
         "image": "/images/projects/SpeechBiometricsSystem.png",
         "stars": 0
       },
       {
-        "name": "Movie Match",
-        "description": "MovieMatch is a room-based movie discovery app where friends join a shared session, pick preferences, and swipe through a merged movie list.",
-        "lang": "React + Node.js",
-        "url": "https://github.com/amandeepsingh29/MovieMatch",
-        "image": "/images/projects/MovieMatch.png",
-        "stars": 0
+        "name": "TracePulse",
+        "description": "",
+        "lang": "React",
+        "url": "https://github.com/amandeepsingh29/TracePulse",
+        "stars": 0,
+        "image": "/images/projects/TracePulse.png"
+      },
+      {
+        "name": "mints",
+        "description": "",
+        "lang": "JavaScript",
+        "url": "https://github.com/amandeepsingh29/mints",
+        "stars": 0,
+        "image": "/images/projects/mints.png"
+      },
+      {
+        "name": "RateLimiter",
+        "description": "",
+        "lang": "Spring Boot + Redis + Lua",
+        "url": "https://github.com/amandeepsingh29/RateLimiter",
+        "stars": 0,
+        "image": "/images/projects/RateLimiter.png"
+      },
+      {
+        "name": "GenBlog",
+        "description": "",
+        "lang": "Python",
+        "url": "https://github.com/amandeepsingh29/GenBlog",
+        "stars": 0,
+        "image": "/images/projects/GenBlog.png"
+      },
+      {
+        "name": "ScrapeWise",
+        "description": "",
+        "lang": "Python",
+        "url": "https://github.com/amandeepsingh29/ScrapeWise",
+        "stars": 0,
+        "image": "/images/projects/ScrapeWise.png"
+      },
+      {
+        "name": "centrestage",
+        "description": "",
+        "lang": "Python",
+        "url": "https://github.com/amandeepsingh29/centrestage",
+        "stars": 0,
+        "image": "/images/projects/centrestage.png"
+      },
+      {
+        "name": "VideoSuperResolution",
+        "description": "",
+        "lang": "Python",
+        "url": "https://github.com/amandeepsingh29/VideoSuperResolution",
+        "stars": 0,
+        "image": "/images/projects/VideoSuperResolution.png"
       }
     ],
     "images": [
