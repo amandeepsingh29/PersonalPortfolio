@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useTheme } from "../ThemeContext";
 import { ArrowUpRight } from "lucide-react";
-import { CircularTestimonials } from "@/components/ui/circular-testimonials";
+import { BentoGridCarousel } from "@/components/ui/bento-grid-carousel";
 import { useSiteContent } from "../SiteContentContext";
 
 function getProjectPlaceholder(name, idx) {
@@ -56,24 +56,8 @@ export default function ProjectsSection() {
         </a>
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-6xl justify-center px-4 sm:px-6">
-        <CircularTestimonials
-          testimonials={testimonials}
-          autoplay={true}
-          colors={{
-            name: isDark ? "#f8fafc" : "#0f172a",
-            designation: isDark ? "#9ca3af" : "#6b7280",
-            testimony: isDark ? "#e5e7eb" : "#374151",
-            arrowBackground: isDark ? "#1f2937" : "#111827",
-            arrowForeground: "#f8fafc",
-            arrowHoverBackground: isDark ? "#ef4444" : "#2563eb",
-          }}
-          fontSizes={{
-            name: "clamp(1.4rem, 1.2rem + 0.8vw, 2rem)",
-            designation: "clamp(0.88rem, 0.8rem + 0.2vw, 1rem)",
-            quote: "clamp(0.9rem, 0.84rem + 0.28vw, 1.02rem)",
-          }}
-        />
+      <div className="relative z-10 mx-auto w-full max-w-[100vw] overflow-hidden">
+        <BentoGridCarousel projects={testimonials} speed={60} />
       </div>
     </section>
   );
