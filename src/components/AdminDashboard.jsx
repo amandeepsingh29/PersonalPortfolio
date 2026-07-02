@@ -40,7 +40,6 @@ export default function AdminDashboard() {
   const { isDark } = useTheme();
   const { content, setContent } = useSiteContent();
   const [draftContent, setDraftContent] = useState(() => cloneContent(content));
-  const [autoApply, setAutoApply] = useState(true);
   const [status, setStatus] = useState("");
   const [lastSavedAt, setLastSavedAt] = useState(null);
 
@@ -51,12 +50,6 @@ export default function AdminDashboard() {
   const isDirty = useMemo(() => {
     return JSON.stringify(content) !== JSON.stringify(draftContent);
   }, [content, draftContent]);
-
-  useEffect(() => {
-    if (!autoApply || !isDirty) return;
-    setContent(cloneContent(draftContent));
-    setLastSavedAt(new Date());
-  }, [autoApply, draftContent, isDirty, setContent]);
 
   const updateProjectsField = (key, value) => {
     setDraftContent((prev) => ({
@@ -225,17 +218,6 @@ export default function AdminDashboard() {
         >
           {isDirty ? "Unsaved changes" : "All changes saved"}
         </span>
-        <button
-          type="button"
-          onClick={() => setAutoApply((prev) => !prev)}
-          className={`rounded-full px-3 py-1 font-mono-space ${
-            autoApply
-              ? "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-              : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-300"
-          }`}
-        >
-          Auto-apply: {autoApply ? "ON" : "OFF"}
-        </button>
         {lastSavedAt && (
           <span className="rounded-full bg-gray-100 px-3 py-1 font-mono-space text-gray-600 dark:bg-gray-800 dark:text-gray-300">
             Saved at {lastSavedAt.toLocaleTimeString()}

@@ -192,12 +192,19 @@ const Hero = () => {
         {/* Bio Card */}
         <div onMouseMove={handleSpotlight} className={`card-spotlight md:col-span-2 rounded-2xl p-8 card-lift ${isDark ? 'bg-[#1a1a24] border border-gray-800' : 'bg-white border border-gray-100'}`}>
           <h3 className={`font-mono-space text-[11px] font-bold uppercase tracking-[0.2em] mb-5 ${isDev ? 'text-emerald-400' : 'text-red-600'}`}>[ ABOUT ]</h3>
-          <div className={`space-y-4 leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            <p>Hi, Amandeep this side.</p>
-            <p>I am passionate about software development, but not just about the typical buzz words. I like getting into system design, architecture, and functionality.</p>
-            <p>Worked in various domains ranging from DBs to AI/ML to Neurotech. Joined Engineering team @Oracle, place where systems meet scale.</p>
-            <p>Curious about something? Get in touch :) Would love to connect and grind over ideas.</p>
-          </div>
+          <p className={`whitespace-pre-line leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+            {`Hi, you are at the right profile! :)
+I am diving into scalable systems, system design, architecture and AI functionality.
+Current Read: Database Internals.
+Joined the Engineering team @Oracle as an Intern in the Elastic Charging Engine Team.
+Curious about something? Get in touch via `}
+            <a href="mailto:amandeep.singh.dsc@gmail.com" className={`underline ${isDev ? 'text-emerald-400' : 'text-red-600'}`}>amandeep.singh.dsc@gmail.com</a>
+            {`
+
+Open to Opportunities 😁
+
+Would love to connect and grind over ideas ✨`}
+          </p>
         </div>
 
         {/* Profile Card */}
