@@ -4,7 +4,7 @@
 
 A modern, minimalist personal portfolio website built with **React** — showcasing my blogs, reads, projects, and thoughts on software engineering, system design, and technology.
 
-🌐 **Live Site:** [amandeepxsingh.tech](https://amandeepxsingh.tech)
+🌐 **Live Site:** [amandeepxsingh.netlify.app](https://amandeepxsingh.netlify.app)
 
 ---
 
@@ -99,4 +99,4 @@ frontend/
 
 ---
 
-*Built with ❤️ by [Amandeep Singh](https://amandeepxsingh.tech)*
+*Built with ❤️ by [Amandeep Singh](https://amandeepxsingh.netlify.app)*
