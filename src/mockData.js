@@ -63,7 +63,7 @@ export const footerLinks = {
   ],
   everythingElse: [
     { label: "Collaborate with me", url: "#" },
-    { label: "Portfolio", url: "https://amandeepxsingh.netlify.app" },
+    { label: "Portfolio", url: "https://amandeepsinghxd.netlify.app" },
     { label: "GitHub", url: "https://github.com/amandeepsingh29" }
   ]
 };
