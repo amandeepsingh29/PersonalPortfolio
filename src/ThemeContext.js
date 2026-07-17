@@ -6,12 +6,13 @@ export const useTheme = () => useContext(ThemeContext);
 
 const getNextThemeMode = (mode) => {
   if (mode === 'light') return 'dark';
-  if (mode === 'dark') return 'dev';
+  if (mode === 'dark') return 'neo';
   return 'light';
 };
 
 const getOverlayColor = (mode) => {
   if (mode === 'light') return '#F5F1E8';
+  if (mode === 'neo') return '#FFE600';
   if (mode === 'dev') return '#050b0b';
   return '#0f0f14';
 };
@@ -20,12 +21,13 @@ export const ThemeProvider = ({ children }) => {
   const [themeMode, setThemeMode] = useState(() => {
     if (typeof window === 'undefined') return 'light';
     const saved = window.localStorage.getItem('portfolio-theme-mode');
-    return saved === 'dark' || saved === 'dev' || saved === 'light' ? saved : 'light';
+    return saved === 'dark' || saved === 'neo' || saved === 'light' ? saved : 'light';
   });
   const [isAnimating, setIsAnimating] = useState(false);
   const overlayRef = useRef(null);
   const toggleOrigin = useRef({ x: 0, y: 0 });
-  const isDark = themeMode !== 'light';
+  const isDark = themeMode === 'dark';
+  const isNeo = themeMode === 'neo';
   const isDev = themeMode === 'dev';
 
   useEffect(() => {
@@ -74,7 +76,7 @@ export const ThemeProvider = ({ children }) => {
   }, [themeMode, isAnimating]);
 
   return (
-    <ThemeContext.Provider value={{ isDark, isDev, themeMode, toggleTheme, isAnimating }}>
+    <ThemeContext.Provider value={{ isDark, isNeo, isDev, themeMode, toggleTheme, isAnimating }}>
       {/* Woosh overlay */}
       <div ref={overlayRef} className="theme-woosh-overlay" />
       {children}

@@ -5,20 +5,27 @@ import { Briefcase, GraduationCap, MapPin } from 'lucide-react';
 const experienceData = [
     {
         id: 1,
-        date: 'Jan 2026 - Present',
+        date: 'July 2026 - Present',
+        title: 'Founding Engineer',
+        company: 'Crumbles.dev',
+        description: 'Building production infrastructure for AI agents. Developing an operating layer that gives agent teams the control plane and knowledge layer they need to run reliably in production, featuring tools for observability, context grounding, and workflow automation.',
+    },
+    {
+        id: 2,
+        date: 'Jan 2026 - July 2026',
         title: 'Software Developer Intern',
         company: 'Oracle',
         description: 'Working on enterprise software solutions and collaborating with cross-functional teams to develop, test, and maintain robust applications.',
     },
     {
-        id: 2,
+        id: 3,
         date: 'May 2025 - July 2025',
         title: 'Software Developer Intern',
         company: 'ProAEC',
         description: 'Contributed to the development of software tools and systems, focusing on improving code efficiency and implementing new features.',
     },
     {
-        id: 3,
+        id: 4,
         date: 'June 2023 - July 2023',
         title: 'Research Intern',
         company: 'EL Centre',

@@ -71,6 +71,28 @@ code {
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
     }
+    .neo-theme {
+        --background: 60 100% 97%; /* #FFFDF0 */
+        --foreground: 0 0% 0%;
+        --card: 60 100% 97%;
+        --card-foreground: 0 0% 0%;
+        --popover: 60 100% 97%;
+        --popover-foreground: 0 0% 0%;
+        --primary: 330 100% 50%; /* Hot Pink */
+        --primary-foreground: 0 0% 0%;
+        --secondary: 180 100% 50%; /* Cyan */
+        --secondary-foreground: 0 0% 0%;
+        --muted: 60 20% 90%;
+        --muted-foreground: 0 0% 20%;
+        --accent: 60 100% 50%; /* Yellow */
+        --accent-foreground: 0 0% 0%;
+        --destructive: 0 100% 50%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 0 0% 0%;
+        --input: 0 0% 0%;
+        --ring: 0 0% 0%;
+        --radius: 0px;
+    }
 }
 
 @layer base {

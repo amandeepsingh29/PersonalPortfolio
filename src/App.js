@@ -55,9 +55,11 @@ function Home() {
 }
 
 function AppContent() {
-  const { isDark, isDev } = useTheme();
+  const { isDark, isNeo, isDev } = useTheme();
 
-  const appThemeClasses = isDev
+  const appThemeClasses = isNeo
+    ? 'neo-theme bg-[#FFFDF0]'
+    : isDev
     ? 'dark dev-mode bg-[#050b0b]'
     : isDark
       ? 'dark bg-[#0f0f14]'

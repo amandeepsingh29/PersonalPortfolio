@@ -698,7 +698,7 @@ body.dev-overclock .App.dev-mode {
 
 .theme-toggle-btn .icon-sun,
 .theme-toggle-btn .icon-moon,
-.theme-toggle-btn .icon-dev {
+.theme-toggle-btn .icon-neo {
   position: absolute;
   transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), 
               opacity 0.3s ease;
@@ -724,7 +724,7 @@ body.dev-overclock .App.dev-mode {
   opacity: 1;
 }
 
-.theme-toggle-btn .icon-dev {
+.theme-toggle-btn .icon-neo {
   transform: rotate(90deg) scale(0);
   opacity: 0;
 }
@@ -739,3 +739,78 @@ body.dev-overclock .App.dev-mode {
   transform: rotate(-90deg) scale(0);
   opacity: 0;
 }
+
+/* ============================================
+   NEOBRUTALISM THEME OVERRIDES
+   ============================================ */
+
+.neo-theme {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+/* Base interactive elements */
+.neo-theme button,
+.neo-theme a,
+.neo-theme .card,
+.neo-theme [class*="rounded"] {
+  border: 3px solid #000 !important;
+  box-shadow: 4px 4px 0px #000 !important;
+  border-radius: 0px !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+
+/* Remove default shadow behavior on hover in cards */
+.neo-theme .card:hover,
+.neo-theme .hover\:-translate-y-2:hover {
+  transform: none !important;
+  box-shadow: 4px 4px 0px #000 !important;
+}
+
+/* Button & Link press effect */
+.neo-theme button:active,
+.neo-theme a:active,
+.neo-theme .card:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: 0px 0px 0px #000 !important;
+}
+
+/* Special overrides for nav and small badges */
+.neo-theme header {
+  border-bottom: 3px solid #000 !important;
+  box-shadow: 0px 4px 0px #000 !important;
+  background-color: #FFFDF0 !important;
+}
+
+.neo-theme .theme-toggle-btn {
+  border-radius: 0px !important;
+}
+
+.neo-theme .theme-toggle-btn .icon-neo {
+  position: absolute;
+  transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+  transform: rotate(90deg) scale(0);
+  opacity: 0;
+}
+
+.neo-theme .theme-toggle-btn .icon-neo {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.neo-theme .theme-toggle-btn .icon-sun,
+.neo-theme .theme-toggle-btn .icon-moon {
+  transform: rotate(-90deg) scale(0);
+  opacity: 0;
+}
+
+/* Typography punch-up */
+.neo-theme h1, .neo-theme h2, .neo-theme h3 {
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+
+.neo-theme .text-red-600 {
+  color: #FF0080 !important;
+}
+
